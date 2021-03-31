@@ -16,7 +16,7 @@ app.use(cors());
 
 
 
-const CONNECTION_URL = "mongodb+srv://developer:90807060@college-event-website-c.yxr8d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const CONNECTION_URL = "Add the url here for back end";
 const PORT = process.env.PORT || 5000;
 
 Mongoose.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true})
