@@ -6,7 +6,7 @@ const CommentSchema =  mongoose.Schema({
         required: true
     },
     rating: {
-        type: String,
+        type: Number,
         required: true
     },
     time: {

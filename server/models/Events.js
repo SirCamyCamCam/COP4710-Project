@@ -41,6 +41,10 @@ const EventsSchema =  mongoose.Schema({
     category: {
         type: String,
         default: "None"
+    },
+    eventType: {
+        type: String,
+        required: true
     }
 })
 

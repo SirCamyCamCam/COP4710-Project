@@ -1,11 +1,11 @@
-import PostEvents from '../models/PostEvents.js';
+import Events from '../models/Events.js';
 
 
 export const getEvent = ('/', (req,res) =>{
     try {
-        const PostEvents = PostEvents.find();
+        const Events = Events.find();
 
-        res.status(200).json(PostEvents);
+        res.status(200).json(Events);
     } catch (error){
         res.status(404).json({message: error.message});
     }
