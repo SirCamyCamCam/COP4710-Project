@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const EventsSchema =  mongoose.Schema({
+const EventsTypeSchema =  mongoose.Schema({
     privateArray: [{
         privateEvent: {
             type: Object
@@ -24,5 +24,5 @@ const EventsSchema =  mongoose.Schema({
     }]
 })
 
-const Events = mongoose.model('Events', EventsSchema);
-export default Events;
+const EventsType = mongoose.model('EventsType', EventsTypeSchema);
+export default EventsType;
