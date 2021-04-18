@@ -1,12 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import reactDOM from "react-dom";
 
-import TransitionGroup from "react-transition-group";
-
-import FadeTransition from "../src/transitions/fadeTransition";
-
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -48,18 +43,6 @@ class App extends React.Component {
             Register
           </div>
         </div>
- 
-        <FadeTransition isOpen={this.state.isLoginOpen} duration={500}>
-          <div className="box-container">
-            <LoginBox/>
-          </div>
-        </FadeTransition>
-        <FadeTransition isOpen={this.state.isRegisterOpen} duration={500}>
-          <div className="box-container">
-            <RegisterBox/>
-          </div>
-        </FadeTransition>
-
       </div>
     );
 
@@ -67,60 +50,64 @@ class App extends React.Component {
 
 }
 
-class LoginBox extends React.Component {
+// export class LoginBox extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
 
-  submitLogin(e) {}
+//   const [details, setDetails] = setState({username: "", password: ""});
 
-  render() {
-    return (
-      <div className="inner-container">
-        <div className="header">
-          Login
-        </div>
-        <div className="box">
+//   submitLogin(e) {
+//     alert();
+//   }
 
-          <div className="input-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              className="login-input"
-              placeholder="Username"/>
-          </div>
+//   render() {
+//     return (
+//       <div className="inner-container">
+//         <div className="header">
+//           Login
+//         </div>
+//         <div className="box">
 
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              placeholder="Password"/>
-          </div>
+//           <div className="input-group">
+//             <label htmlFor="username">Username</label>
+//             <input
+//               type="text"
+//               name="username"
+//               className="login-input"
+//               placeholder="Username"/>
+//           </div>
 
-          <button
-            type="button"
-            className="login-btn"
-            onClick={this
-            .submitLogin
-            .bind(this)}>Login</button>
+//           <div className="input-group">
+//             <label htmlFor="password">Password</label>
+//             <input
+//               type="password"
+//               name="password"
+//               className="login-input"
+//               placeholder="Password"/>
+//           </div>
 
-        </div>
-      </div>
-    );
-  }
+//           <button
+//             type="button"
+//             className="login-btn"
+//             onClick={this
+//             .submitLogin
+//             .bind(this)}>Login</button>
 
-}
+//         </div>
+//       </div>
+//     );
+//   }
+
+// }
 
 function pop(props) {
   return
 }
 
-class RegisterBox extends React.Component {
+export class RegisterBox extends React.Component {
 
     constructor(props) {
       super(props);
