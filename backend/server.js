@@ -2,10 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-
-
 // importing routers 
-const AdminRouter = require('../server/routes/Admin');
+const AdminRouter = require('../backend/routes/Admins');
+const CommentRouter = require('../backend/routes/Comments');
+const EventRouter = require('../backend/routes/Events');
+const EventTypeRouter = require('../backend/routes/EventTypes');
+const RSORouter = require('../backend/routes/RSOs');
+const StudentRouter = require('../backend/routes/Students');
+const SuperAdminRouter = require('../backend/routes/SuperAdmins');
+const UniversityRouter = require('../backend/routes/Universitys');
 
 const app = express();
 
@@ -37,7 +42,14 @@ mongoose.connect(
 Include routes for different endpoints here
     ex) app.use('/users', usersRouter); // userRouter is imported from routes folder
 */
-app.use('/garages', AdminRouter);
+app.use('/Admins', AdminRouter);
+app.use('/Comments', CommentRouter);
+app.use('/Events', EventRouter);
+app.use('/EventTypes', EventTypeRouter);
+app.use('/RSOs', RSORouter);
+app.use('/Students', StudentRouter);
+app.use('/SuperAdmins', SuperAdminRouter);
+app.use('/Universitys', UniversityRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

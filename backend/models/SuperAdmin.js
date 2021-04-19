@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const SuperAdminSchema =  mongoose.Schema({
+
+const SuperAdminSchema =  new Schema({
     email: {
         type: String,
         required: true
@@ -15,5 +17,4 @@ const SuperAdminSchema =  mongoose.Schema({
     }
 })
 
-const SuperAdmin = mongoose.model('SuperAdmin', SuperAdminSchema);
-export default SuperAdmin;
+module.exports = SuperAdmin = mongoose.model("SuperAdmins", SuperAdminSchema);

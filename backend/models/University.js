@@ -1,12 +1,17 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UniversitySchema =  mongoose.Schema({
+const UniversitySchema =  new Schema({
     superAdmin: {
         type: Object,
         required: true
     },
-    location: {
-        type: GeolocationCoordinates,
+    lat: {
+        type: Number,
+        required: true
+    },    
+    lon: {
+        type: Number,
         required: true
     },
     desc: {
@@ -19,5 +24,4 @@ const UniversitySchema =  mongoose.Schema({
     }
 })
 
-const University = mongoose.model('University', UniversitySchema);
-export default University;
+module.exports = University = mongoose.model("Universitys", UniversitySchema);

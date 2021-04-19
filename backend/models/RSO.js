@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const RSOSchema =  mongoose.Schema({
+const RSOSchema = new Schema({
     studentArray: [{
         student: {
             type: Object,
@@ -21,5 +22,4 @@ const RSOSchema =  mongoose.Schema({
     }
 })
 
-const RSO = mongoose.model('RSO', RSOSchema);
-export default RSO;
+module.exports = RSO = mongoose.model("RSOs", RSOSchema);

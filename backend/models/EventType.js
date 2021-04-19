@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const EventsTypeSchema =  mongoose.Schema({
+const EventTypeSchema =  new Schema({
     privateArray: [{
         privateEvent: {
             type: Object
@@ -24,5 +25,4 @@ const EventsTypeSchema =  mongoose.Schema({
     }]
 })
 
-const EventsType = mongoose.model('EventsType', EventsTypeSchema);
-export default EventsType;
+module.exports = EventType = mongoose.model("EventTypes", EventTypeSchema);

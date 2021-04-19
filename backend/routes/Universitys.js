@@ -1,83 +1,19 @@
 const router = require('express').Router();
-const Events = require('../models/Event');
+const University = require('../models/University');
 
 
-router.post('/createEvents', (req, res) => {
-    const newEvents = new Events({
-        desc: req.body.EventsDesc,
-        time: req.body.EventsTime,
-        event_id: req.body.EventsID,
-        lat: req.body.EventsLat,
-        lon: req.body.EventsLon,
-        phone: req.body.EventsPhone,
-        email: req.body.EventsEmail,
-        admin: req.body.EventsAdmin,
-        rso: req.body.EventsRSO,
-        commentArray: req.body.EventsCommentArray,
-        category: req.body.EventsCategory,
-        eventType: req.body.EventsEventType
+router.post('/createUniversity', (req, res) => {
+    const newUniversity = new University({
+        superAdmin: req.body.UniversitySuperAdmin,
+        lat: req.body.UniversityLat,
+        lon: req.body.UniversityLon,
+        desc: req.body.UniversityDesc,
+        name: req.body.UniversityName
     });
-    newEvents
+    newUniversity
     .save()
-    .then(Events => res.status(200).json(Events))
+    .then(University => res.status(200).json(University))
     .catch(err => res.status(400).json(err));
-});
-
-// findEventTime
-router.get('/findEventsTime', (req, res) => {
-    Events.findOne({time: req.body.time})
-    .then(Events => {
-        if (Events) {
-            return Events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
-
-// findEventLocation
-router.get('/findEventsLocation', (req, res) => {
-    Events.findOne({location: req.body.location})
-    .then(Events => {
-        if (Events) {
-            return Events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
-
-
-// findEventRSO
-router.get('/findEventsRSO', (req, res) => {
-    Events.findOne({rso: req.body.rso})
-    .then(Events => {
-        if (Events) {
-            return Events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
-
-// findEventLocation
-router.get('/findEventsLocation', (req, res) => {
-    Events.findOne({location: req.body.location})
-    .then(Events => {
-        if (Events) {
-            return Events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
 });
 
 /*
