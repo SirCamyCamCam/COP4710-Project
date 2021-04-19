@@ -4,7 +4,7 @@ const Admin = require('../models/Admin');
 
 router.post('/createAdmin', (req, res) => {
     // check if this email already exists
-    Admin.findOne({email: req.body.email})
+    Admin.findOne({email: req.body.AdminEmail})
     .then(admin => {
         if (admin) {
             return res.status(200).json({error: "email already exists"})
@@ -25,11 +25,11 @@ router.post('/createAdmin', (req, res) => {
 
 
 // findAdmin
-router.get('/findAdmin', (req, res) => {
-    Admin.findOne({email: req.body.email})
+router.post('/findAdmin', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
     .then(admin => {
         if (admin) {
-            return admin
+            return res.status(200).json(admin)
         }
         else
         {

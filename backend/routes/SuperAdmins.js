@@ -3,7 +3,7 @@ const SuperAdmin = require('../models/SuperAdmin');
 
 
 router.post('/createSuperAdmin', (req, res) => {
-    SuperAdmin.findOne({email: req.body.email})
+    SuperAdmin.findOne({email: req.body.SuperAdminEmail})
     .then(superadmin => {
         if (superadmin) {
             return res.status(200).json({error: "email already exists"})
@@ -23,11 +23,11 @@ router.post('/createSuperAdmin', (req, res) => {
 });
 
 // findSuperAdmin
-router.get('/findSuperAdmin', (req, res) => {
-    SuperAdmin.findOne({email: req.body.email})
+router.post('/findSuperAdmin', (req, res) => {
+    SuperAdmin.findOne({email: req.body.SuperAdminEmail})
     .then(superadmin => {
         if (superadmin) {
-            return superadmin
+            return res.status(200).json(superadmin)
         }
         else
         {
