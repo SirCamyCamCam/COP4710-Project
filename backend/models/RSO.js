@@ -22,4 +22,4 @@ const RSOSchema = new Schema({
     }
 })
 
-module.exports = RSO = mongoose.model("RSOs", RSOSchema);
+module.exports = RSO = mongoose.model("rso", RSOSchema);

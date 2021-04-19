@@ -5,8 +5,8 @@ const Student = require('../models/Student');
 router.post('/createStudent', (req, res) => {
     // check if this email already exists
     Student.findOne({email: req.body.email})
-    .then(Student => {
-        if (Student) {
+    .then(student => {
+        if (student) {
             return res.status(200).json({error: "email already exists"})
         }
         else {
@@ -29,9 +29,9 @@ router.post('/createStudent', (req, res) => {
 // findStudent
 router.get('/findStudent', (req, res) => {
     Student.findOne({email: req.body.email})
-    .then(Student => {
-        if (Student) {
-            return Student
+    .then(student => {
+        if (student) {
+            return student
         }
         else
         {

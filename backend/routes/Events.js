@@ -30,9 +30,9 @@ router.post('/createEvents', (req, res) => {
 // findEventTime
 router.get('/findEventsTime', (req, res) => {
     Events.findOne({time: req.body.time})
-    .then(Events => {
-        if (Events) {
-            return Events
+    .then(events => {
+        if (events) {
+            return events
         }
         else
         {
@@ -44,9 +44,9 @@ router.get('/findEventsTime', (req, res) => {
 // findEventLocation
 router.get('/findEventsLocation', (req, res) => {
     Events.findOne({location: req.body.location})
-    .then(Events => {
-        if (Events) {
-            return Events
+    .then(events => {
+        if (events) {
+            return events
         }
         else
         {
@@ -59,9 +59,9 @@ router.get('/findEventsLocation', (req, res) => {
 // findEventRSO
 router.get('/findEventsRSO', (req, res) => {
     Events.findOne({rso: req.body.rso})
-    .then(Events => {
-        if (Events) {
-            return Events
+    .then(events => {
+        if (events) {
+            return events
         }
         else
         {
@@ -73,9 +73,9 @@ router.get('/findEventsRSO', (req, res) => {
 // findEventLocation
 router.get('/findEventsLocation', (req, res) => {
     Events.findOne({location: req.body.location})
-    .then(Events => {
-        if (Events) {
-            return Events
+    .then(events => {
+        if (events) {
+            return events
         }
         else
         {
