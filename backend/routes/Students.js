@@ -27,8 +27,8 @@ router.post('/createStudent', (req, res) => {
 
 
 // findStudent
-router.get('/findStudent', (req, res) => {
-    Student.findOne({email: req.body.email})
+router.post('/findStudent', (req, res) => {
+    Student.findOne({email: req.body.StudentEmail})
     .then(student => {
         if (student) {
             return student

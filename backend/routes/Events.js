@@ -28,8 +28,8 @@ router.post('/createEvents', (req, res) => {
 // Needs to find all not one
 
 // findEventTime
-router.get('/findEventsTime', (req, res) => {
-    Events.findOne({time: req.body.time})
+router.post('/findEventsTime', (req, res) => {
+    Events.findOne({time: req.body.EventsTime})
     .then(events => {
         if (events) {
             return events
@@ -40,39 +40,10 @@ router.get('/findEventsTime', (req, res) => {
         }
     })
 });
-
-// findEventLocation
-router.get('/findEventsLocation', (req, res) => {
-    Events.findOne({location: req.body.location})
-    .then(events => {
-        if (events) {
-            return events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
-
 
 // findEventRSO
-router.get('/findEventsRSO', (req, res) => {
-    Events.findOne({rso: req.body.rso})
-    .then(events => {
-        if (events) {
-            return events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
-
-// findEventLocation
-router.get('/findEventsLocation', (req, res) => {
-    Events.findOne({location: req.body.location})
+router.post('/findEventsRSO', (req, res) => {
+    Events.findOne({rso: req.body.EventsRSO})
     .then(events => {
         if (events) {
             return events
