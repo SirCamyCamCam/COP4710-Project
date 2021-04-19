@@ -1,35 +1,33 @@
 const router = require('express').Router();
-const Admin = require('../models/Admin');
+const SuperAdmin = require('../models/SuperAdmin');
 
 
-router.post('/createAdmin', (req, res) => {
-    // check if this email already exists
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
+router.post('/createSuperAdmin', (req, res) => {
+    SuperAdmin.findOne({email: req.body.email})
+    .then(SuperAdmin => {
+        if (SuperAdmin) {
             return res.status(200).json({error: "email already exists"})
         }
         else {
-            const newAdmin = new Admin({
-                email: req.body.AdminEmail,
-                phone: req.body.AdminNumber,
-                password: req.body.AdminPassword,
+            const newSuperAdmin = new SuperAdmin({
+                email: req.body.SuperAdminEmail,
+                phone: req.body.SuperAdminPhone,
+                password: req.body.SuperAdminPassword
             });
-            newAdmin
+            newSuperAdmin
             .save()
-            .then(Admin => res.status(200).json(Admin))
+            .then(SuperAdmin => res.status(200).json(SuperAdmin))
             .catch(err => res.status(400).json(err));
         }
     })
 });
 
-
-// findAdmin
-router.get('/findAdmin', (req, res) => {
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
-            return Admin
+// findSuperAdmin
+router.get('/findSuperAdmin', (req, res) => {
+    SuperAdmin.findOne({email: req.body.email})
+    .then(SuperAdmin => {
+        if (SuperAdmin) {
+            return SuperAdmin
         }
         else
         {

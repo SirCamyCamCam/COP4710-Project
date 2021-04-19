@@ -1,35 +1,37 @@
 const router = require('express').Router();
-const Admin = require('../models/Admin');
+const Student = require('../models/Student');
 
 
-router.post('/createAdmin', (req, res) => {
+router.post('/createStudent', (req, res) => {
     // check if this email already exists
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
+    Student.findOne({email: req.body.email})
+    .then(Student => {
+        if (Student) {
             return res.status(200).json({error: "email already exists"})
         }
         else {
-            const newAdmin = new Admin({
-                email: req.body.AdminEmail,
-                phone: req.body.AdminNumber,
-                password: req.body.AdminPassword,
+            const newStudent = new Student({
+                email: req.body.StudentEmail,
+                password: req.body.StudentPassword,
+                university: req.body.StudentUniversity,
+                student_id: req.body.StudentID,
+                phone: req.body.StudentPhone
             });
-            newAdmin
+            newStudent
             .save()
-            .then(Admin => res.status(200).json(Admin))
+            .then(Student => res.status(200).json(Student))
             .catch(err => res.status(400).json(err));
         }
     })
 });
 
 
-// findAdmin
-router.get('/findAdmin', (req, res) => {
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
-            return Admin
+// findStudent
+router.get('/findStudent', (req, res) => {
+    Student.findOne({email: req.body.email})
+    .then(Student => {
+        if (Student) {
+            return Student
         }
         else
         {
@@ -37,6 +39,7 @@ router.get('/findAdmin', (req, res) => {
         }
     })
 });
+
 
 /*
 // isFull api

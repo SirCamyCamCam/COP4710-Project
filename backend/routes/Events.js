@@ -1,39 +1,80 @@
 const router = require('express').Router();
-const Admin = require('../models/Admin');
+const Events = require('../models/Events');
 
 
-router.post('/createAdmin', (req, res) => {
-    // check if this email already exists
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
-            return res.status(200).json({error: "email already exists"})
+router.post('/createEvents', (req, res) => {
+    const newEvents = new Events({
+        desc: req.body.EventsDesc,
+        time: req.body.EventsTime,
+        event_id: req.body.EventsID,
+        location: req.body.EventsLocation,
+        phone: req.body.EventsPhone,
+        email: req.body.EventsEmail,
+        admin: req.body.EventsAdmin,
+        rso: req.body.EventsRSO,
+        commentArray: req.body.EventsCommentArray,
+        category: req.body.EventsCategory,
+        eventType: req.body.EventsEventType
+    });
+    newEvents
+    .save()
+    .then(Events => res.status(200).json(Events))
+    .catch(err => res.status(400).json(err));
+});
+
+// findEventTime
+router.get('/findEventsTime', (req, res) => {
+    Events.findOne({time: req.body.time})
+    .then(Events => {
+        if (Events) {
+            return Events
         }
-        else {
-            const newAdmin = new Admin({
-                email: req.body.AdminEmail,
-                phone: req.body.AdminNumber,
-                password: req.body.AdminPassword,
-            });
-            newAdmin
-            .save()
-            .then(Admin => res.status(200).json(Admin))
-            .catch(err => res.status(400).json(err));
+        else
+        {
+            return res.status(200).json({error: "Event does not exist"})
+        }
+    })
+});
+
+// findEventLocation
+router.get('/findEventsLocation', (req, res) => {
+    Events.findOne({location: req.body.location})
+    .then(Events => {
+        if (Events) {
+            return Events
+        }
+        else
+        {
+            return res.status(200).json({error: "Event does not exist"})
         }
     })
 });
 
 
-// findAdmin
-router.get('/findAdmin', (req, res) => {
-    Admin.findOne({email: req.body.email})
-    .then(Admin => {
-        if (Admin) {
-            return Admin
+// findEventRSO
+router.get('/findEventsRSO', (req, res) => {
+    Events.findOne({rso: req.body.rso})
+    .then(Events => {
+        if (Events) {
+            return Events
         }
         else
         {
-            return res.status(200).json({error: "email does not exist"})
+            return res.status(200).json({error: "Event does not exist"})
+        }
+    })
+});
+
+// findEventLocation
+router.get('/findEventsLocation', (req, res) => {
+    Events.findOne({location: req.body.location})
+    .then(Events => {
+        if (Events) {
+            return Events
+        }
+        else
+        {
+            return res.status(200).json({error: "Event does not exist"})
         }
     })
 });
