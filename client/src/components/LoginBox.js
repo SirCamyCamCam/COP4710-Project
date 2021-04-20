@@ -19,21 +19,20 @@ function LoginBox() {
         //console.log(details);
 
         axios.post("Admins/findAdmin", details).then(response => {
-            console.log(response);
+            if (response.data == "Super Admin" || response.data == "Admin" || response.data == "Student") {
+                console.log("Logged in");
+                setUser({
+                    AdminEmail: details.AdminEmail
+                });
+                sessionStorage.setItem("username", details.AdminEmail);
+                sessionStorage.setItem("accountType", response.data);
+                // Navigate to main page
+                history.push("./mainPage");
+            }else {
+                console.log("Credentials do not match");
+                setError("Credentials do not match")
+            }
         })
-
-        if (details.AdminAdminEmail == adminUser.AdminPassword && details.AdminPassword == adminUser.AdminPassword) {
-            console.log("Logged in");
-            setUser({
-                AdminEmail: details.AdminEmail
-            });
-            sessionStorage.setItem("username", details.AdminEmail);
-            // Navigate to main page
-            history.push("./mainPage");
-        }else {
-            console.log("Credentials do not match");
-            setError("Credentials do not match")
-        }
     }
   
     const sumbitHandler = e => {

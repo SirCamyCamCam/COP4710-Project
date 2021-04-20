@@ -1,16 +1,24 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router';
+import axios from 'axios'
 import './../index.css'
 
 function Register({ error }) {
-    const [details, setDetails] = useState({email: "", password: "", accountType: "", phoneNumber: ""});
+    const [details, setDetails] = useState({AdminEmail: "", AdminPassword: "", AdminType: "", AdminNumber: ""});
   
     const createUser = e => {
         e.preventDefault();
+        console.log(details);
 
         // TODO: Put in DataBase
-        console.log(details);
-        routeChange();
+        axios.post("Admins/createAdmin", details).then(response => {
+            if (response.data == "User registered") {
+                routeChange();
+                console.log(response.data)
+            }else {
+                console.log(response.data)
+            }
+        });
     }
 
     const history = useHistory();
@@ -33,7 +41,7 @@ function Register({ error }) {
                         className="register-input"
                         placeholder="Email@website.com"
                         id="email"
-                        onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
+                        onChange={e => setDetails({...details, AdminEmail: e.target.value})} value={details.AdminEmail} />
                     </div>
 
                     <div className="form-group">
@@ -44,7 +52,7 @@ function Register({ error }) {
                         className="register-input"
                         placeholder="Phone #"
                         id="phoneNumber"
-                        onChange={e => setDetails({...details, phoneNumber: e.target.value})} value={details.phoneNumber} />
+                        onChange={e => setDetails({...details, AdminNumber: e.target.value})} value={details.AdminNumber} />
                     </div>
 
                     <div className="form-group">
@@ -55,19 +63,19 @@ function Register({ error }) {
                         className="register-input"
                         placeholder="Password"
                         id="password"
-                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
+                        onChange={e => setDetails({...details, AdminPassword: e.target.value})} value={details.AdminPassword} />
                     </div>
 
                     <div className="u-form-group u-form-radiobutton u-form-group-3">
                         <div className="radio">
                             <label className="u-label" htmlFor="radio">Super Admin </label>
-                                <input id="SuperAdmin" type="radio" onChange={e => setDetails({...details, accountType: "SuperAdmin"})} checked={details.accountType == "SuperAdmin"} />                        
+                                <input id="SuperAdmin" type="radio" onChange={e => setDetails({...details, AdminType: "SuperAdmin"})} checked={details.AdminType == "SuperAdmin"} />                        
                             <br/>
                             <label className="u-label" htmlFor="radio">Admin </label>
-                                <input id="Admin" type="radio" onChange={e => setDetails({...details, accountType: "Admin"})} checked={details.accountType == "Admin"}/>                        
+                                <input id="Admin" type="radio" onChange={e => setDetails({...details, AdminType: "Admin"})} checked={details.AdminType == "Admin"}/>                        
                             <br/>
                             <label className="u-label" htmlFor="radio">Student </label>
-                                <input id="Student" type="radio" onChange={e => setDetails({...details, accountType: "Student"})} checked={details.accountType == "Student"}/>                        
+                                <input id="Student" type="radio" onChange={e => setDetails({...details, AdminType: "Student"})} checked={details.AdminType == "Student"}/>                        
                             <br/>
                         </div>
                     </div>
