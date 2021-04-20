@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Admin = require('../models/Admin');
+const port = 3000
 
 
 router.post('/createAdmin', (req, res) => {

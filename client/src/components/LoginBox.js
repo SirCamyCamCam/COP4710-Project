@@ -5,29 +5,29 @@ import './../index.css'
 
 function LoginBox() {
     const history = useHistory();
-    const [details, setDetails] = useState({email: "", password: ""});
+    const [details, setDetails] = useState({AdminEmail: "", AdminPassword: ""});
     const adminUser = {
-        email: "admin@admin.com",
+        AdminEmail: "admin@admin.com",
         password: "admin123"
     }
     
-    const [user, setUser] = useState({email: ""});
+    const [user, setUser] = useState({AdminEmail: ""});
     const [error, setError] = useState("");
 
     // Temporary check before checkjing if user is in database 
     const LoginCheck = details => {
-        console.log(details);
+        //console.log(details);
 
-        axios.post("./Admin/findAdmin", details).then(response => {
+        axios.post("Admins/findAdmin", details).then(response => {
             console.log(response);
         })
 
-        if (details.email == adminUser.email && details.password == adminUser.password) {
+        if (details.AdminAdminEmail == adminUser.AdminPassword && details.AdminPassword == adminUser.AdminPassword) {
             console.log("Logged in");
             setUser({
-                email: details.email
+                AdminEmail: details.AdminEmail
             });
-            sessionStorage.setItem("username", details.email);
+            sessionStorage.setItem("username", details.AdminEmail);
             // Navigate to main page
             history.push("./mainPage");
         }else {
@@ -60,7 +60,7 @@ function LoginBox() {
                         className="login-input"
                         placeholder="Email"
                         id="email"
-                        onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
+                        onChange={e => setDetails({...details, AdminEmail: e.target.value})} value={details.AdminEmail} />
                     </div>
 
                     <div className="form-group">
@@ -71,7 +71,7 @@ function LoginBox() {
                         className="login-input"
                         placeholder="Password"
                         id="password"
-                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
+                        onChange={e => setDetails({...details, AdminPassword: e.target.value})} value={details.AdminPassword} />
                     </div>
 
                     <input type="submit" value="LOGIN"/>
