@@ -19,7 +19,7 @@ function LoginBox() {
         //console.log(details);
 
         axios.post("Admins/findAdmin", details).then(response => {
-            if (response.data == "Super Admin" || response.data == "Admin" || response.data == "Student") {
+            if (response.data == "SuperAdmin" || response.data == "Admin" || response.data == "Student") {
                 console.log("Logged in");
                 setUser({
                     AdminEmail: details.AdminEmail
