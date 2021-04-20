@@ -15,7 +15,7 @@ router.post('/createAdmin', (req, res) => {
                 email: req.body.AdminEmail,
                 phone: req.body.AdminNumber,
                 password: req.body.AdminPassword,
-                AcoountType: req.body.AdminType
+                accountType: req.body.AdminType
             });
             newAdmin
             .save()
@@ -30,7 +30,7 @@ router.post('/findAdmin', (req, res) => {
     Admin.findOne({email: req.body.AdminEmail, password: req.body.AdminPassword})
     .then(admin => {
         if (admin) {
-            return res.status(200).json(admin.AcoountType)
+            return res.status(200).json(admin.accountType)
         }
         else
         {
