@@ -18,6 +18,10 @@ function LoginBox() {
     const LoginCheck = details => {
         console.log(details);
 
+        axios.post("./Admin/findAdmin", details).then(response => {
+            console.log(response);
+        })
+
         if (details.email == adminUser.email && details.password == adminUser.password) {
             console.log("Logged in");
             setUser({
