@@ -117,7 +117,7 @@ function CreateEvent() {
               </div>
 
               <div className="form-group">
-                  <label>Date: </label>
+                  <label>time: </label>
                   <input
                   type="time"
                   name="time"

@@ -14,26 +14,26 @@ router.post('/createAdmin', (req, res) => {
                 email: req.body.AdminEmail,
                 phone: req.body.AdminNumber,
                 password: req.body.AdminPassword,
+                AcoountType: req.body.AdminType
             });
             newAdmin
             .save()
-            .then(Admin => res.status(200).json(Admin))
+            .then(Admin => res.status(200).json("User registered"))
             .catch(err => res.status(400).json(err));
         }
     })
 });
 
-
 // findAdmin
 router.post('/findAdmin', (req, res) => {
-    Admin.findOne({email: req.body.AdminEmail})
+    Admin.findOne({email: req.body.AdminEmail, password: req.body.AdminPassword})
     .then(admin => {
         if (admin) {
-            return res.status(200).json(admin)
+            return res.status(200).json(admin.AcoountType)
         }
         else
         {
-            return res.status(200).json({error: "email does not exist"})
+            return res.status(200).json({error: "email or Password does not match"})
         }
     })
 });
