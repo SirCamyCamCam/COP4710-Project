@@ -8,6 +8,7 @@ import LoginBox from './components/LoginBox';
 import MainPage from './components/MainPage';
 import CreateEvent from './components/CreateEvent';
 import CreateRSO from './components/CreateRSO';
+import CreateUniversity from './components/CreateUniversity'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -17,6 +18,7 @@ ReactDOM.render(
             <Route exact path={'/mainPage'} component={MainPage} />
             <Route exact path={'/createEvent'} component={CreateEvent} />
             <Route exact path={'/createRSO'} component={CreateRSO} />
+            <Route exact path={'/createUniversity'} component={CreateUniversity} />
         </Switch>
     </BrowserRouter>,
 document.getElementById('root')

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router';
 import { GoogleMap, useJsApiLoader, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -38,6 +39,12 @@ function CreateEvent() {
     console.log(details);
     // TODO Put in DataBase
   }
+
+  const history = useHistory();
+
+  const routeChange  = () => {
+    history.push("./mainPage")
+}
   
   return (
     <form className="CreateEvent" onSubmit={submitHandler}>
@@ -128,6 +135,8 @@ function CreateEvent() {
               </div>
 
               <input type="submit" value="CREATE EVENT"/>
+              <input type="button" value="RETURN" onClick={routeChange}/>
+
           </div>
         </div>
         <div className="Map-inner">  

@@ -16,7 +16,7 @@ function LoginBox() {
 
     // Temporary check before checkjing if user is in database 
     const LoginCheck = details => {
-        //console.log(details);
+        console.log(details);
 
         axios.post("Admins/findAdmin", details).then(response => {
             if (response.data == "SuperAdmin" || response.data == "Admin" || response.data == "Student") {
@@ -29,6 +29,7 @@ function LoginBox() {
                 // Navigate to main page
                 history.push("./mainPage");
             }else {
+                console.log(response);
                 console.log("Credentials do not match");
                 setError("Credentials do not match")
             }

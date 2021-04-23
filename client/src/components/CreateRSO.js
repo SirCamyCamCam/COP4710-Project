@@ -4,7 +4,7 @@ import './../index.css'
 
 function CreateRSO() {
     const history = useHistory();
-    const [details, setDetails] = useState({email1: "", email2: "", email3: "", email4: "", email5: "",});
+    const [details, setDetails] = useState({email1: "", email2: "", email3: "", email4: "", email5: "", RSO_name: "", university: ""});
     
     const [error, setError] = useState("");
 
@@ -37,6 +37,17 @@ function CreateRSO() {
                 <h4> The first email will be the administrator of the group </h4>
                 {(error != "") ? ( <div className="error">{error}</div> ) : ""}
                 <div className="box">
+                    <div className="form-group">
+                        <label>RSO Name: </label>
+                        <input
+                        type="RSO Name"
+                        name="RSO Name"
+                        className="login-input"
+                        placeholder="RSO Name"
+                        id="RSO Name"
+                        onChange={e => setDetails({...details, RSO_name: e.target.value})} value={details.RSO_name} />
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="email">Email: </label>
                         <input
@@ -90,6 +101,17 @@ function CreateRSO() {
                         placeholder="Email"
                         id="email"
                         onChange={e => setDetails({...details, email5: e.target.value})} value={details.email5} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>University: </label>
+                        <input
+                        type="University"
+                        name="University"
+                        className="login-input"
+                        placeholder="University"
+                        id="University"
+                        onChange={e => setDetails({...details, University: e.target.value})} value={details.University} />
                     </div>
 
                     <input type="submit" value="SUBMIT"/>
