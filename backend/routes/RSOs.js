@@ -23,7 +23,7 @@ router.post('/findUniversity', (req, res) => {
         }
         else
         {
-            return res.status(200).json({error: "email does not exist"})
+            return res.status(200).json({error: "university does not exist"})
         }
     })
 });
