@@ -2,26 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UniversitySchema =  new Schema({
-    superAdmin: {
-        type: Object,
+    name: {
+        type: String,
         required: true
     },
-    lat: {
-        type: Number,
+    email: {
+        type: String,
         required: true
     },    
-    lon: {
-        type: Number,
-        required: true
-    },
     desc: {
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    }
+    location : {
+        type: {
+            type: String
+        },
+        coordinates: [Number]
+    },
+    
 })
-
+UniversitySchema.index({"location" : "2dsphere"});
 module.exports = University = mongoose.model("university", UniversitySchema);

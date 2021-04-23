@@ -4,15 +4,22 @@ const Events = require('../models/Event');
 
 router.post('/createEvents', (req, res) => {
     const newEvents = new Events({
+        name: req.body.EventsName,
+        type: req.body.EventType,
+        email: req.body.EventsEmail,
+        phone: req.body.EventsPhone,
         desc: req.body.EventsDesc,
+
         time: req.body.EventsTime,
-        event_id: req.body.EventsID,
+
         lat: req.body.EventsLat,
         lon: req.body.EventsLon,
+        
         phone: req.body.EventsPhone,
         email: req.body.EventsEmail,
         admin: req.body.EventsAdmin,
         rso: req.body.EventsRSO,
+
         commentArray: req.body.EventsCommentArray,
         category: req.body.EventsCategory,
         eventType: req.body.EventsEventType

@@ -16,7 +16,7 @@ const CommentSchema =  new Schema({
     },
     student: {
         type: Object,
-        required: false
+        required: true
     }
 })
 

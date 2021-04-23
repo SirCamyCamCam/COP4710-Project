@@ -15,4 +15,17 @@ router.post('/createComment', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+router.post('/displayComment', (req, res) => {
+    Comment.find({student: req.body.CommentStudent})
+    .then(comment => {
+        if (comment) {
+            return res.status(200).json(comment)
+        }
+        else
+        {
+            return res.status(200).json({error: "email or Password does not match"})
+        }
+    })
+});
+
 module.exports = router;

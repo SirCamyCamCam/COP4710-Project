@@ -2,6 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EventSchema =  new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
     desc: {
         type: String,
         required: true
@@ -9,10 +25,6 @@ const EventSchema =  new Schema({
     time: {
         type : Date, 
         default: Date.now,
-        required: true
-    },
-    event_id: {
-        type : Object,
         required: true
     },
     lat: {

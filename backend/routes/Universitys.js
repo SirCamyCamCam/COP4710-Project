@@ -4,11 +4,10 @@ const University = require('../models/University');
 
 router.post('/createUniversity', (req, res) => {
     const newUniversity = new University({
-        superAdmin: req.body.UniversitySuperAdmin,
-        lat: req.body.UniversityLat,
-        lon: req.body.UniversityLon,
+        name: req.body.UniversityName,
+        email: req.body.UniversityEmail,
         desc: req.body.UniversityDesc,
-        name: req.body.UniversityName
+        location: req.body.UniversityLocation,
     });
     newUniversity
     .save()
@@ -19,14 +18,14 @@ router.post('/createUniversity', (req, res) => {
 
 // findUniversity
 router.post('/findUniversity', (req, res) => {
-    University.findOne({name: req.body.UniversityName})
+    University.find({name: req.body.UniversityName})
     .then(university => {
         if (university) {
             return res.status(200).json(university)
         }
         else
         {
-            return res.status(200).json({error: "email does not exist"})
+            return res.status(200).json({error: "Universit does not exist"})
         }
     })
 });
