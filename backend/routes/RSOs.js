@@ -6,7 +6,7 @@ router.post('/createRSO', (req, res) => {
         studentArray: req.body.RSOStudentArrray,
         name: req.body.RSOName,
         rsoAdmin: req.body.RSOAdmin,
-        rsoUniversity: req.body.RSOUniversity
+        university: req.body.RSOUniversity
     });
     newRSO
     .save()
