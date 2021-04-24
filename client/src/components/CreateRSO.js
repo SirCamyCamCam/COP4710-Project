@@ -14,8 +14,18 @@ function CreateRSO() {
 
         // 5 emails will be sent to database
         // The first one will be the admin of the group
+        // TODO: Put in DataBase
+        axios.post("RSO/createRSO", details).then(response => {
+            if (response.data == "RSO created") {
+                routeChange();
+                console.log(response.data)
+            }else {
+                window.alert("Failed");
+                console.log(response.data)
+            }
+        });
 
-        window.alert("RSO created");
+        // window.alert("RSO created");
     }
   
     const sumbitHandler = e => {

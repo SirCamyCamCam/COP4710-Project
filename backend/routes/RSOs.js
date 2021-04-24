@@ -19,7 +19,7 @@ router.post('/createRSO', (req, res) => {
     });
     newRSO
     .save()
-    .then(RSO => res.status(200).json(RSO))
+    .then(RSO => res.status(200).json("RSO created"))
     .catch(err => res.status(400).json(err));
 });
 
