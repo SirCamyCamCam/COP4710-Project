@@ -16,7 +16,7 @@ router.post('/createEvents', (req, res) => {
     });
     newEvents
     .save()
-    .then(Events => res.status(200).json(Events))
+    .then(Events => res.status(200).json("Created Event"))
     .catch(err => res.status(400).json(err));
 });
 

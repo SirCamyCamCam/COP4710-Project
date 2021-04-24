@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router';
 import { GoogleMap, useJsApiLoader, LoadScript, Marker } from '@react-google-maps/api';
+import axios from 'axios'
 
 const containerStyle = {
   width: '1000px',
@@ -37,7 +38,15 @@ function CreateEvent() {
     details.long = markers.lng;
 
     console.log(details);
-    // TODO Put in DataBase
+     // TODO: Put in DataBase
+    axios.post("Events/createEvent", details).then(response => {
+        if (response.data == "Created Event") {
+            routeChange();
+            console.log(response.data)
+        }else {
+            console.log(response.data)
+        }
+    });
   }
 
   const history = useHistory();

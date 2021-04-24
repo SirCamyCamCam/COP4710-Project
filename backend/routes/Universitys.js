@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const University = require('../models/University');
-
+const port = 3000
 
 router.post('/createUniversity', (req, res) => {
     const newUniversity = new University({
@@ -25,7 +25,7 @@ router.post('/findUniversity', (req, res) => {
         }
         else
         {
-            return res.status(200).json({error: "Universit does not exist"})
+            return res.status(200).json({error: "University does not exist"})
         }
     })
 });
