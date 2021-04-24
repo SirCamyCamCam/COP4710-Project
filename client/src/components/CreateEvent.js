@@ -17,8 +17,8 @@ function CreateEvent() {
 
   const [markers, setMarkers] = useState([]);
 
-  const [details, setDetails] = useState({email: "", eventName: "", eventType: "", phoneNumber: "", 
-                                          lat: "", long: "", eventDescription: "", date: "", time: ""});
+  const [details, setDetails] = useState({EventsEmail: "", EventsName: "", EventType: "", EventsPhone: "", EventCategory: "", 
+                                          EventsLat: "", EventsLon: "", EventsDesc: "", EventDate: "", EventsTime: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -60,20 +60,31 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Event Name"
                   id="Event Name"
-                  onChange={e => setDetails({...details, eventName: e.target.value})} value={details.eventName} />
+                  onChange={e => setDetails({...details, EventsName: e.target.value})} value={details.EventsName} />
+              </div>
+
+              <div className="form-group">
+                  <label>Event Category: </label>
+                  <input
+                  type="EventCategory"
+                  name="EventCategory"
+                  className="register-input"
+                  placeholder="Event Category"
+                  id="EventCategory"
+                  onChange={e => setDetails({...details, EventCategory: e.target.value})} value={details.EventCategory} />
               </div>
 
               <div className="u-form-group u-form-radiobutton u-form-group-3">
                 <h6> Event Type </h6>
                 <div className="radio"> 
                     <label className="u-label" htmlFor="radio">Public </label>
-                        <input id="Public" type="radio" onChange={e => setDetails({...details, eventType: "Public"})} checked={details.eventType == "Public"} />                        
+                        <input id="Public" type="radio" onChange={e => setDetails({...details, EventType: "Public"})} checked={details.EventType == "Public"} />                        
                     <br/>
                     <label className="u-label" htmlFor="radio">Private </label>
-                        <input id="Private" type="radio" onChange={e => setDetails({...details, eventType: "Private"})} checked={details.eventType == "Private"}/>                        
+                        <input id="Private" type="radio" onChange={e => setDetails({...details, EventType: "Private"})} checked={details.EventType == "Private"}/>                        
                     <br/>
                     <label className="u-label" htmlFor="radio">RSO </label>
-                        <input id="RSO" type="radio" onChange={e => setDetails({...details, eventType: "RSO"})} checked={details.eventType == "RSO"}/>
+                        <input id="RSO" type="radio" onChange={e => setDetails({...details, EventType: "RSO"})} checked={details.EventType == "RSO"}/>
                     <br/>
                 </div>
               </div>
@@ -84,9 +95,9 @@ function CreateEvent() {
                   type="email"
                   name="email"
                   className="register-input"
-                  placeholder="Event Name"
+                  placeholder="Event Email"
                   id="email"
-                  onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
+                  onChange={e => setDetails({...details, EventsEmail: e.target.value})} value={details.EventsEmail} />
               </div>
 
               <div className="form-group">
@@ -97,7 +108,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Phone #"
                   id="phoneNumber"
-                  onChange={e => setDetails({...details, phoneNumber: e.target.value})} value={details.phoneNumber} 
+                  onChange={e => setDetails({...details, EventsPhone: e.target.value})} value={details.EventsPhone} 
                   />
               </div>
 
@@ -109,7 +120,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Give a short description"
                   id="eventDescription"
-                  onChange={e => setDetails({...details, eventDescription: e.target.value})} value={details.eventDescription} />
+                  onChange={e => setDetails({...details, EventsDesc: e.target.value})} value={details.EventsDesc} />
               </div>
 
               <div className="form-group">
@@ -120,7 +131,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder=""
                   id="eventDescription"
-                  onChange={e => setDetails({...details, date: e.target.value})} value={details.date} />
+                  onChange={e => setDetails({...details, EventDate: e.target.value})} value={details.EventDate} />
               </div>
 
               <div className="form-group">
@@ -131,7 +142,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder=""
                   id="eventDescription"
-                  onChange={e => setDetails({...details, time: e.target.value})} value={details.time} />
+                  onChange={e => setDetails({...details, EventsTime: e.target.value})} value={details.EventsTime} />
               </div>
 
               <input type="submit" value="CREATE EVENT"/>
