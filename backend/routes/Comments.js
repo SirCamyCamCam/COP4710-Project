@@ -4,6 +4,7 @@ const Comment = require('../models/Comment');
 
 router.post('/createComment', (req, res) => {
     const newComment = new Comment({
+        CommentEvent: req.body.CommentEvent,
         text: req.body.CommentText,
         rating: req.body.CommentRating,
         time: req.body.CommentTime,

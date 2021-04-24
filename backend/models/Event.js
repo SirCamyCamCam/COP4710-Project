@@ -23,8 +23,7 @@ const EventSchema =  new Schema({
         required: true
     },
     time: {
-        type : Date, 
-        default: Date.now,
+        type : String, 
         required: true
     },
     lat: {
@@ -35,21 +34,6 @@ const EventSchema =  new Schema({
         type : Number,
         required: true
     },
-    phone: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    admin: {
-        type: Object,
-        required: true
-    },
-    rso: {
-        type: Object
-    },
     commentArray: [{
         comment: {
             type: Object
@@ -57,12 +41,9 @@ const EventSchema =  new Schema({
     }],
     category: {
         type: String,
-        default: "None"
-    },
-    eventType: {
-        type: String,
+        default: "None",
         required: true
-    }
+    },
 })
 
 module.exports = Event = mongoose.model("event", EventSchema);

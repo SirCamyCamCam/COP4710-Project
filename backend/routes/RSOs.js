@@ -14,7 +14,7 @@ router.post('/createRSO', (req, res) => {
     const newRSO = new RSO({
         studentArray: RSOStudentArrray,
         name: req.body.RSOName,
-        rsoAdmin: req.body.RSOAdmin,
+        rsoAdmin: req.body.email1,
         university: req.body.RSOUniversity
     });
     newRSO

@@ -9,20 +9,10 @@ router.post('/createEvents', (req, res) => {
         email: req.body.EventsEmail,
         phone: req.body.EventsPhone,
         desc: req.body.EventsDesc,
-
         time: req.body.EventsTime,
-
         lat: req.body.EventsLat,
         lon: req.body.EventsLon,
-        
-        phone: req.body.EventsPhone,
-        email: req.body.EventsEmail,
-        admin: req.body.EventsAdmin,
-        rso: req.body.EventsRSO,
-
-        commentArray: req.body.EventsCommentArray,
-        category: req.body.EventsCategory,
-        eventType: req.body.EventsEventType
+        category: req.body.Eventcategory
     });
     newEvents
     .save()
