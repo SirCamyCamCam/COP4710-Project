@@ -3,18 +3,18 @@ const RSO = require('../models/RSO');
 const port = 3000
 
 router.post('/createRSO', (req, res) => {
-    const RSOStudentArrray = [{
-        student1: req.body.email1,
-        student2: req.body.email2,
-        student3: req.body.email3,
-        student4: req.body.email4,
-        student5: req.body.email5
-    }];
+    const RSOStudentArrray = [
+        {student: req.body.email1},
+        {student: req.body.email2},
+        {student: req.body.email3},
+        {student: req.body.email4},
+        {student: req.body.email5}
+    ];
     
     const newRSO = new RSO({
         studentArray: RSOStudentArrray,
         name: req.body.RSOName,
-        rsoAdmin: req.body.email1,
+        rsoAdmin: req.body.RSOAdmin,
         university: req.body.RSOUniversity
     });
     newRSO

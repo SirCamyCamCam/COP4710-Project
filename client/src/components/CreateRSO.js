@@ -4,7 +4,7 @@ import './../index.css'
 
 function CreateRSO() {
     const history = useHistory();
-    const [details, setDetails] = useState({email1: "", email2: "", email3: "", email4: "", email5: "", RSOName: "", RSOUniversity: ""});
+    const [details, setDetails] = useState({email1: "", email2: "", email3: "", email4: "", email5: "", RSO_name: "", university: ""});
     
     const [error, setError] = useState("");
 
@@ -55,7 +55,7 @@ function CreateRSO() {
                         className="login-input"
                         placeholder="RSO Name"
                         id="RSO Name"
-                        onChange={e => setDetails({...details, RSOName: e.target.value})} value={details.RSOName} />
+                        onChange={e => setDetails({...details, RSO_name: e.target.value})} value={details.RSO_name} />
                     </div>
 
                     <div className="form-group">
@@ -121,7 +121,7 @@ function CreateRSO() {
                         className="login-input"
                         placeholder="University"
                         id="University"
-                        onChange={e => setDetails({...details, RSOUniversity: e.target.value})} value={details.RSOUniversity} />
+                        onChange={e => setDetails({...details, University: e.target.value})} value={details.University} />
                     </div>
 
                     <input type="submit" value="SUBMIT"/>

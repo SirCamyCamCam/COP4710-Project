@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const RSOSchema = new Schema({
     studentArray: [{
         student: {
-            type: Object,
+            type: String,
             required: true
         }
     }],
@@ -13,11 +13,11 @@ const RSOSchema = new Schema({
         required: true
     },
     rsoAdmin: {
-        type: Object,
+        type: String,
         required: true
     },
     university: {
-        type: Object,
+        type: String,
         required: true
     }
 })
