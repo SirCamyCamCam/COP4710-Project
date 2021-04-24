@@ -6,10 +6,7 @@ const bodyParser = require('body-parser');
 const AdminRouter = require('../backend/routes/Admins');
 const CommentRouter = require('../backend/routes/Comments');
 const EventRouter = require('../backend/routes/Events');
-const EventTypeRouter = require('../backend/routes/EventTypes');
 const RSORouter = require('../backend/routes/RSOs');
-const StudentRouter = require('../backend/routes/Students');
-const SuperAdminRouter = require('../backend/routes/SuperAdmins');
 const UniversityRouter = require('../backend/routes/Universitys');
 
 const app = express();
@@ -45,10 +42,7 @@ Include routes for different endpoints here
 app.use('/Admins', AdminRouter);
 app.use('/Comments', CommentRouter);
 app.use('/Events', EventRouter);
-app.use('/EventTypes', EventTypeRouter);
 app.use('/RSOs', RSORouter);
-app.use('/Students', StudentRouter);
-app.use('/SuperAdmins', SuperAdminRouter);
 app.use('/Universitys', UniversityRouter);
 
 const port = process.env.PORT || 5000;
