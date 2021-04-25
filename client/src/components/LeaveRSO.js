@@ -19,9 +19,9 @@ function LeaveRSO() {
 
         // TODO: Put in DataBase
         axios.post("RSOs/deleteStudent", details).then(response => {
-            if (response.data == "RSO updated") {
-                console.log(response.data)
-                window.alert(response.data)
+            if (response.data) {
+                console.log("Successfully left RSO")
+                window.alert("Successfully left RSO")
                 routeChange();
             }else {
                 console.log(response.data)
