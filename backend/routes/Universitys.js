@@ -7,7 +7,8 @@ router.post('/createUniversity', (req, res) => {
         name: req.body.UniversityName,
         email: req.body.UniversityEmail,
         desc: req.body.UniversityDesc,
-        location: req.body.UniversityLocation,
+        lat: req.body.UniversityLat,
+        lon: req.body.UniversityLon,
     });
     newUniversity
     .save()

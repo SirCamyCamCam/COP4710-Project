@@ -14,13 +14,14 @@ const UniversitySchema =  new Schema({
         type: String,
         required: true
     },
-    location : {
-        type: {
-            type: String
-        },
-        coordinates: [Number]
+    lat: {
+        type : Number,
+        required: true
     },
-    
+    lon: {
+        type : Number,
+        required: true
+    },
 })
 UniversitySchema.index({"location" : "2dsphere"});
 module.exports = University = mongoose.model("university", UniversitySchema);
