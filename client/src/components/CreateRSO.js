@@ -22,7 +22,7 @@ function CreateRSO() {
                 routeChange();
                 console.log(response.data)
             }else {
-                window.alert("Failed");
+                window.alert("Failed" + response.data);
                 console.log(response.data)
             }
         });

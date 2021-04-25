@@ -21,7 +21,7 @@ const RSOSchema = new Schema({
         required: true
     },
     active:{
-        type: bool,
+        type: Boolean,
         required: true
     }
 })

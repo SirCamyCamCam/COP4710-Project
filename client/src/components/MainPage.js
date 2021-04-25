@@ -52,6 +52,24 @@ function MainPage() {
         }        
     }
 
+    const joinRSO = () => {
+        if (sessionStorage.getItem("accountType") == "Student") {
+            history.push("./joinRSO")
+        }else {
+            window.alert("You cannot join a RSO with your account type. You need to be a Student!")
+            history.push("./joinRSO")
+        }        
+    }
+
+    const leaveRSO = () => {
+        if (sessionStorage.getItem("accountType") == "Student") {
+            history.push("./leaveRSO")
+        }else {
+            window.alert("You cannot leave a RSO with your account type. You need to be a Student!")
+            history.push("./leaveRSO")
+        }        
+    }
+
     return (
         <form className="MainPage">
             <div className="form-inner">
@@ -68,6 +86,12 @@ function MainPage() {
                     </button>
                     <button value="VIEW EVENTS" onClick={viewEvents}>
                         VIEW EVENTS
+                    </button>
+                    <button value="JOIN RSO" onClick={joinRSO}>
+                        JOIN RSO
+                    </button>
+                    <button value="LEAVE RSO" onClick={leaveRSO}>
+                        LEAVE RSO
                     </button>
                     <button value="LOGOUT" onClick={Logout}>
                         LOGOUT
