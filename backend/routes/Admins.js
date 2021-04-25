@@ -90,4 +90,32 @@ router.post('/removeRSO', (req, res) => {
     })
 })
 
+router.post('/getRSO', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin)
+        {
+            return res.status(200).json(admin.rso);
+        }
+        else
+        {
+            return res.status(200).json({error: "User does not exist"})
+        }
+    })
+});
+
+router.post('/getUniversity', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin)
+        {
+            return res.status(200).json(admin.university);
+        }
+        else
+        {
+            return res.status(200).json({error: "User does not exist"})
+        }
+    })
+})
+
 module.exports = router;
