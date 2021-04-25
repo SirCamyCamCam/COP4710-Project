@@ -49,57 +49,71 @@ router.post('/createEvents', (req, res) => {
 
 // findEvents
 router.post('/findEvents', (req, res) => {
-
     var eventList = []
-    Events.find({type: "Public"})
-    .then(publicEvents => {
-        if (publicEvents)
-        {
-            publicEvents.forEach(element => {
-            eventList.push(element);
-            });
-        }
-        else{
-            return res.status(200).json({error: "Public does not exist"});
-        }
-    });
+    var universityOfStudent = ""
+    var rsoList = []
+
+    // Make sure student exists
     Admins.find({email: req.body.email})
     .then(student => {
         if (student)
         {
-            RSOs.find({studentArray: {student: req.body.email}})
-            .then(rsos => {
-                if (rsos)
-                {
-                    Events.find({rso: rsos.name})
-                    .then(rsoEvents => {
-                        if (rsoEvents)
-                        {
-                            rsoEvents.forEach(element => {
-                                eventList.push(element);
-                            });
-                        }
-                    });
-                }
-            });
-
-            Events.find({university: student.university})
-            .then(privateEvents => {
-                if (privateEvents)
-                {
-                    privateEvents.forEach(element => {
-                        eventList.push(element);
-                    });
-                }
-            });
-
-            return res.status(200).json(eventList);
+            universityOfStudent = student.university
         }
         else
         {
             return res.status(200).json({error: "Student does not exist"});
         }
-    })
+    });
+
+    // Find and add all public events
+    Events.find({type: "Public"})
+    .then(publicEvents => {
+        if (publicEvents)
+        {
+            publicEvents.forEach(element => {
+                eventList.push(element);
+            });
+        }
+    });
+
+    // Find and add all private events of the univeristy
+    Events.find({university: universityOfStudent})
+    .then(privateEvents => {
+        if (privateEvents)
+        {
+            privateEvents.forEach(element => {
+                eventList.push(element);
+            });
+        }
+    });
+
+    // Find RSOs that student is a member of
+    RSOs.find({studentArray: {student: req.body.email}})
+    .then(rsos => {
+        if (rsos)
+        {
+            rsos.forEach(element => {
+                rsoList.push(element)
+            })
+        }
+    });
+
+    // Find and add all events for each rso
+    rsoList.forEach(element => {
+        Events.find({rso: element.name})
+            .then(rsoEvents => {
+                if (rsoEvents)
+                {
+                    rsoEvents.forEach(element => {
+                        eventList.push(element);
+                    });
+                }
+            });
+    });
+            
+    // return the list of events
+    return res.status(200).json(eventList);
 })
 
 module.exports = router;
