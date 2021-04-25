@@ -114,19 +114,19 @@ router.post('/deleteStudent', (req, res) => {
                 if (rso.studentArray[i].student == req.body.email)
                 {
                     deleted = true;
-
                     RSO.updateOne(
                         {
-                            '_id':ObjectId(rso._id)
+                            '_id':rso._id
                         },
                         {
                             $pull:{
-                                "studentArray":{
-                                    "student":req.body.email
+                                studentArray:{
+                                    student: req.body.email
                                 }
                             }
-                        }
-                    )
+                        },
+                        false,true
+                    );
                     break;
                 }
             }
