@@ -47,9 +47,8 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// Find all public events
 router.post('/findEventsPublic', (req, res) => {
-    
-    // Find and add all public events
     Events.find({type: "Public"})
     .then(publicEvents => {
         if (publicEvents)
@@ -64,10 +63,9 @@ router.post('/findEventsPublic', (req, res) => {
 });
 
 
-// Find and add all private events of the univeristy
+// Find all private events of the univeristy
 router.post('/findEventsPrivate', (req, res) => {
-    // Find and add all public events
-    Events.find({university: req.body.email})
+    Events.find({university: req.body.university})
     .then(privateEvents => {
         if (privateEvents)
         {
@@ -80,22 +78,13 @@ router.post('/findEventsPrivate', (req, res) => {
     });
 });
 
-// Find and add all private events of the univeristy
+// Find all rso events
 router.post('/findEventsRso', (req, res) => {
-    var name  = []
-    RSOs.findOne({studnetArray:{student: req.body.email}})
-    .then(student => {
-        if (student)
+    Events.find({rso: req.body.rso})
+    .then(rsoEvents => {
+        if (rsoEvents)
         {
-            name = student
-        }
-    })
-    // Find and add all public events
-    Events.find({university: name})
-        .then(privateEvents => {
-        if (privateEvents)
-        {
-            return res.status(200).json(privateEvents);
+            return res.status(200).json(rsoEvents);
         }
         else
         {
