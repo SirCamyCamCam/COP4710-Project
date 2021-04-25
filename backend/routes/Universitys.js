@@ -15,7 +15,6 @@ router.post('/createUniversity', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-
 // findUniversity
 router.post('/findUniversity', (req, res) => {
     University.find({name: req.body.UniversityName})

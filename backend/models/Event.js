@@ -14,6 +14,10 @@ const EventSchema =  new Schema({
         type: String,
         required: true
     },
+    data:{
+        type: String,
+        required: true
+    },
     phone: {
         type: String,
         required: true

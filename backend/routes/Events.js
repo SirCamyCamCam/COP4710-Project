@@ -32,7 +32,7 @@ router.post('/createEvents', (req, res) => {
         phone: req.body.EventPhone,
         desc: req.body.EventDesc,
         time: req.body.EventTime,
-        lat: req.body.EventsLat,
+        lat: req.body.EventLat,
         lon: req.body.EventLon,
         category: req.body.EventCategory,
         rso: req.body.EventRSO
@@ -43,11 +43,9 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-
-
 // findEventTime
 router.post('/findEventsTime', (req, res) => {
-    Events.findOne({time: req.body.EventTime})
+    Events.find({type: req.body.EventType})
     .then(events => {
         if (events) {
             return events
@@ -57,20 +55,6 @@ router.post('/findEventsTime', (req, res) => {
             return res.status(200).json({error: "Event does not exist"})
         }
     })
-});
-
-// findEventRSO
-router.post('/findEventsRSO', (req, res) => {
-    Events.findOne({rso: req.body.EventRSO})
-    .then(events => {
-        if (events) {
-            return events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
+})
 
 module.exports = router;
