@@ -26,7 +26,7 @@ router.post('/createEvents', (req, res) => {
     })
 
     const newEvents = new Events({
-        name: req.body.EventsName,
+        name: req.body.EventName,
         type: req.body.EventType,
         email: req.body.EventEmail,
         phone: req.body.EventPhone,
