@@ -102,6 +102,11 @@ router.post('/deleteStudent', (req, res) => {
     .then(rso => {
         if (rso) 
         {
+            if (rso.rsoAdmin == req.body.email)
+            {
+                return res.status(200).json({error: "Admin cannot leave RSO!"})
+            }
+
             var i;
             var deleted = false;
             for (i = 0; i < rso.studentArray.length; i++)
