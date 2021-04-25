@@ -47,67 +47,61 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// findEvents
-router.post('/findEvents', (req, res) => {
-    var eventList = []
-    var universityOfStudent = ""
-    var rsoList = []
-
-    // Make sure student exists
-    Admins.find({email: req.body.email})
-    .then(student => {
-        if (student)
-        {
-            universityOfStudent = student.university
-        }
-        else
-        {
-            return res.status(200).json({error: "Student does not exist"});
-        }
-    });
-
+router.post('/findEventsPublic', (req, res) => {
+    
     // Find and add all public events
     Events.find({type: "Public"})
     .then(publicEvents => {
         if (publicEvents)
         {
-            eventList.push(element);
+            return res.status(200).json(publicEvents);
+        }
+        else
+        {
+            res.status(200).json("no public event found");
         }
     });
+});
 
-    // Find and add all private events of the univeristy
-    Events.find({university: universityOfStudent})
+
+// Find and add all private events of the univeristy
+router.post('/findEventsPrivate', (req, res) => {
+    // Find and add all public events
+    Events.find({university: req.body.email})
     .then(privateEvents => {
         if (privateEvents)
         {
-            eventList.push(element);
+            return res.status(200).json(privateEvents);
         }
-    });
-
-    // Find RSOs that student is a member of
-    RSOs.find({studentArray: {student: req.body.email}})
-    .then(rsos => {
-        if (rsos)
+        else
         {
-            rsoList.push(element)
+            res.status(200).json("no events event found");
         }
     });
+});
 
-    // Find and add all events for each rso
-    rsoList.forEach(element => {
-        Events.find({rso: element.name})
-            .then(rsoEvents => {
-                if (rsoEvents)
-                {
-                    rsoEvents.forEach(element => {
-                        eventList.push(element);
-                    });
-                }
-            });
+// Find and add all private events of the univeristy
+router.post('/findEventsRso', (req, res) => {
+    var name  = []
+    RSOs.findOne({studnetArray:{student: req.body.email}})
+    .then(student => {
+        if (student)
+        {
+            name = student
+        }
+    })
+    // Find and add all public events
+    Events.find({university: name})
+        .then(privateEvents => {
+        if (privateEvents)
+        {
+            return res.status(200).json(privateEvents);
+        }
+        else
+        {
+            res.status(200).json("private event not found");
+        }
     });
-            
-    // return the list of events
-   return res.status(200).json(eventList);
-})
+});
 
 module.exports = router;
