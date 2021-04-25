@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const RSO = require('../models/RSO');
 const port = 3000
+const mongoose = require('mongoose');
 
 router.post('/createRSO', (req, res) => {
     if (req.body.email1.length == 0)
@@ -106,6 +107,7 @@ router.post('/deleteStudent', (req, res) => {
             {
                 return res.status(200).json({error: "Admin cannot leave RSO!"})
             }
+            
 
             var i;
             var deleted = false;
@@ -113,20 +115,9 @@ router.post('/deleteStudent', (req, res) => {
             {
                 if (rso.studentArray[i].student == req.body.email)
                 {
+                    RSO.updateOne({ _id: rso._id }, { "$pull": { "studentArray": { "student": req.body.email } }}, { safe: true, multi:true }, function(err, obj) {});
+
                     deleted = true;
-                    RSO.updateOne(
-                        {
-                            '_id':rso._id
-                        },
-                        {
-                            $pull:{
-                                studentArray:{
-                                    student: req.body.email
-                                }
-                            }
-                        },
-                        false,true
-                    );
                     break;
                 }
             }
@@ -135,12 +126,7 @@ router.post('/deleteStudent', (req, res) => {
             {
                 return res.status(200).json({error: "Student does not exist"})
             }
-
-            rso.save(function(err)
-            {
-                err != null ? console.log(err) : console.log('RSO updated')
-            })
-
+            
             if (rso.studentArray.length >= 5)
             {
                 rso.active = true;
