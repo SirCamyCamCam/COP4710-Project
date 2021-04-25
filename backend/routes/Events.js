@@ -50,21 +50,23 @@ router.post('/createEvents', (req, res) => {
 // findEvents
 router.post('/findEvents', (req, res) => {
 
+    var eventList = []
+    Events.find({type: "Public"})
+    .then(publicEvents => {
+        if (publicEvents)
+        {
+            publicEvents.forEach(element => {
+            eventList.push(element);
+            });
+        }
+        else{
+            return res.status(200).json({error: "Public does not exist"});
+        }
+    });
     Admins.find({email: req.body.email})
     .then(student => {
         if (student)
         {
-            var eventList = []
-            Events.find({type: "public"})
-            .then(publicEvents => {
-                if (publicEvents)
-                {
-                    publicEvents.forEach(element => {
-                        eventList.push(element);
-                    });
-                }
-            });
-
             RSOs.find({studentArray: {student: req.body.email}})
             .then(rsos => {
                 if (rsos)
