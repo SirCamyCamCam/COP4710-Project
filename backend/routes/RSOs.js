@@ -3,6 +3,27 @@ const RSO = require('../models/RSO');
 const port = 3000
 
 router.post('/createRSO', (req, res) => {
+    if (req.body.email1.length == 0)
+    {
+        return res.status(200).json({error: "Not Enough students to create RSO!"})
+    }
+    if (req.body.email2.length == 0)
+    {
+        return res.status(200).json({error: "Not Enough students to create RSO!"})
+    }
+    if (req.body.email3.length == 0)
+    {
+        return res.status(200).json({error: "Not Enough students to create RSO!"})
+    }
+    if (req.body.email4.length == 0)
+    {
+        return res.status(200).json({error: "Not Enough students to create RSO!"})
+    }
+    if (req.body.email5.length == 0)
+    {
+        return res.status(200).json({error: "Not Enough students to create RSO!"})
+    }
+
     const RSOStudentArrray = [
         {student: req.body.email1},
         {student: req.body.email2},
@@ -15,7 +36,8 @@ router.post('/createRSO', (req, res) => {
         studentArray: RSOStudentArrray,
         name: req.body.RSOName,
         rsoAdmin: req.body.email1,
-        university: req.body.RSOUniversity
+        university: req.body.RSOUniversity,
+        active: true
     });
     newRSO
     .save()
@@ -23,16 +45,108 @@ router.post('/createRSO', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+<<<<<<< HEAD
 // findUniversity
 router.post('/findUniversity', (req, res) => {
     RSO.findOne({university: req.body.RSOUniversity})
     .then(rso => {
         if (rso) {
             return res.status(200).json(rso)
+=======
+// findRSO
+router.post('/findRSO', (req, res) => {
+    RSO.findOne({name: req.body.RSOName})
+    .then(rso => {
+        if (rso) {
+            return res.status(200).json(rso)
         }
         else
         {
-            return res.status(200).json({error: "university does not exist"})
+            return res.status(200).json({error: "rso does not exist"})
+        }
+    })
+});
+
+// addAStudent
+router.post('/addAStudent', (req, res) => {
+    RSO.findOne({
+        name: req.body.RSOName
+    })
+    .then(rso => {
+        if (rso) 
+        {
+            rso.studentArray.push({
+                student: req.body.email
+                });
+
+            rso.save(function(err)
+            {
+                err != null ? console.log(err) : console.log('rso updated')
+            });
+
+            if (rso.studentArray.length >= 5)
+            {
+                rso.active = true;
+                return res.status(200).json(true);
+            }
+            else
+            {
+                rso.active = false;
+                return res.status(200).json(false);
+            }
+        }
+        else
+        {
+            return res.status(200).json({error: "rso does not exist"});
+        }
+    })
+});
+
+// deleteStudent
+router.post('/deleteStudent', (req, res) => {
+    RSO.findOne({
+        name: req.body.RSOName
+    })
+    .then(rso => {
+        if (rso) 
+        {
+            var i;
+            var deleted = false;
+            for (i = 0; i < rso.studentArray.length; i++)
+            {
+                if (rso.studentArray[i].student == req.body.email)
+                {
+                    deleted = true;
+                    delete rso.studentArray[i];
+                    break;
+                }
+            }
+
+            if (deleted == false)
+            {
+                return res.status(200).json({error: "student does not exist"})
+            }
+
+            rso.save(function(err)
+            {
+                err != null ? console.log(err) : console.log('rso updated')
+            })
+
+            if (rso.studentArray.length >= 5)
+            {
+                rso.active = true;
+                return res.status(200).json(true);
+            }
+            else
+            {
+                rso.active = false;
+                return res.status(200).json(false);
+            }
+>>>>>>> 3ff9fc7ed9afe8ab917a6ea0ba1c90140a3e021f
+        }
+        else
+        {
+            return res.status(200).json({error: "rso does not exist"})
         }
     })
 });
