@@ -12,7 +12,7 @@ router.post('/createUniversity', (req, res) => {
     });
     newUniversity
     .save()
-    .then(University => res.status(200).json(University))
+    .then(University => res.status(200).json("Created University"))
     .catch(err => res.status(400).json(err));
 });
 

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router';
 import { GoogleMap, useJsApiLoader, LoadScript, Marker } from '@react-google-maps/api';
+import axios from 'axios'
 
 const containerStyle = {
   width: '1000px',
@@ -17,7 +18,7 @@ function CreateUniversity() {
 
   const [markers, setMarkers] = useState([]);
 
-  const [details, setDetails] = useState({UniversityEmail: "", UniversityName: "", lat: "", long: "", UniversityDesc: ""});
+  const [details, setDetails] = useState({UniversityEmail: "", UniversityName: "", UniversityLat: "", UniversityLon: "", UniversityDesc: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -32,11 +33,20 @@ function CreateUniversity() {
   }
 
   const createUniversity = (details, markers) => {
-    details.lat = markers.lat;
-    details.long = markers.lng;
+    details.UniversityLat = markers[0].lat;
+    details.UniversityLon = markers[0].lng;
 
     console.log(details);
     // TODO Put in DataBase
+    axios.post("Universitys/createUniversity", details).then(response => {
+      if (response.data == "Created University") {
+          routeChange();
+          console.log(response.data)
+      }else {
+          console.log(response.data)
+      }
+  });
+
   }
 
   const history = useHistory();
