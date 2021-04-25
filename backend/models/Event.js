@@ -44,6 +44,9 @@ const EventSchema =  new Schema({
         default: "None",
         required: true
     },
+    rso: {
+        type: String
+    }
 })
 
 module.exports = Event = mongoose.model("event", EventSchema);
