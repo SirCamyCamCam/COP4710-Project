@@ -82,6 +82,14 @@ form {
   background-image: linear-gradient(to bottom right, #ffce00, #fe4880); 
 }
 
+.MainPage {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #53565a;
+}
+
 form .form-inner {
   position: relative;
   display: block;

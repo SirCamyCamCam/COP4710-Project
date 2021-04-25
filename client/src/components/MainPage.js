@@ -43,6 +43,15 @@ function MainPage() {
         } 
     }
 
+    const viewEvents = () => {
+        if (sessionStorage.getItem("accountType") == "Student") {
+            history.push("./viewEvents")
+        }else {
+            window.alert("You cannot view events with your account type. You need to be a Student!")
+            history.push("./viewEvents")
+        }        
+    }
+
     return (
         <form className="MainPage">
             <div className="form-inner">
@@ -56,6 +65,9 @@ function MainPage() {
                     </button>
                     <button value="CREATE UNIVERSITY" onClick={createUniversity}>
                         CREATE UNIVERSITY
+                    </button>
+                    <button value="VIEW EVENTS" onClick={viewEvents}>
+                        VIEW EVENTS
                     </button>
                     <button value="LOGOUT" onClick={Logout}>
                         LOGOUT
