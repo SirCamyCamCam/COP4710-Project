@@ -118,12 +118,12 @@ router.post('/deleteStudent', (req, res) => {
 
                     if (length <= 5)
                     {
-                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": false}}, { safe: true, multi:true }, function(err, obj) {});
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": false}}, {upsert:true});
                         return res.status(200).json(false);
                     }
                     else 
                     {
-                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": true}}, { safe: true, multi:true }, function(err, obj) {});
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": true}}, {upsert:true});
                         return res.status(200).json(true);
                     }
                 }
