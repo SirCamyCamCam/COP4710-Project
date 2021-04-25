@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const RSO = require('../models/RSO');
 const port = 3000
+const mongoose = require('mongoose');
 
 router.post('/createRSO', (req, res) => {
     if (req.body.email1.length == 0)
@@ -106,50 +107,26 @@ router.post('/deleteStudent', (req, res) => {
             {
                 return res.status(200).json({error: "Admin cannot leave RSO!"})
             }
-
+            
             var i;
-            var deleted = false;
-            for (i = 0; i < rso.studentArray.length; i++)
+            var length = rso.studentArray.length;
+            for (i = 0; i < length; i++)
             {
                 if (rso.studentArray[i].student == req.body.email)
                 {
-                    deleted = true;
-                    RSO.updateOne(
-                        {
-                            '_id':rso._id
-                        },
-                        {
-                            $pull:{
-                                studentArray:{
-                                    student: req.body.email
-                                }
-                            }
-                        },
-                        false,true
-                    );
-                    break;
+                    RSO.updateOne({ _id: rso._id }, { "$pull": { "studentArray": { "student": req.body.email } }}, { safe: true, multi:true }, function(err, obj) {});
+
+                    if (length <= 5)
+                    {
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": false}}, {upsert:true});
+                        return res.status(200).json(false);
+                    }
+                    else 
+                    {
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": true}}, {upsert:true});
+                        return res.status(200).json(true);
+                    }
                 }
-            }
-
-            if (deleted == false)
-            {
-                return res.status(200).json({error: "Student does not exist"})
-            }
-
-            rso.save(function(err)
-            {
-                err != null ? console.log(err) : console.log('RSO updated')
-            })
-
-            if (rso.studentArray.length >= 5)
-            {
-                rso.active = true;
-                return res.status(200).json(true);
-            }
-            else
-            {
-                rso.active = false;
-                return res.status(200).json(false);
             }
         }
         else

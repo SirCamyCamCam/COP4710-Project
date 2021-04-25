@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Events = require('../models/Event');
 const RSOs = require('../models/RSO')
+const Admins = require('../models/Admin')
 const port = 3000;
 
 router.post('/createEvents', (req, res) => {
@@ -36,8 +37,9 @@ router.post('/createEvents', (req, res) => {
         time: req.body.EventTime,
         lat: req.body.EventLat,
         lon: req.body.EventLon,
-        category: req.body.EventCategory
-        // rso: req.body.EventRSO
+        category: req.body.EventCategory,
+        rso: req.body.EventRSO,
+        university: req.body.EventUniversity
     });
     newEvents
     .save()
@@ -45,16 +47,55 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// findEventTime
-router.post('/findEventsTime', (req, res) => {
-    Events.find({type: req.body.EventType})
-    .then(events => {
-        if (events) {
-            return events
+// findEvents
+router.post('/findEvents', (req, res) => {
+
+    Admins.find({email: req.body.email})
+    .then(student => {
+        if (student)
+        {
+            var eventList = []
+            Events.find({type: "public"})
+            .then(publicEvents => {
+                if (publicEvents)
+                {
+                    publicEvents.forEach(element => {
+                        eventList.push(element);
+                    });
+                }
+            });
+
+            RSOs.find({studentArray: {student: req.body.email}})
+            .then(rsos => {
+                if (rsos)
+                {
+                    Events.find({rso: rsos.name})
+                    .then(rsoEvents => {
+                        if (rsoEvents)
+                        {
+                            rsoEvents.forEach(element => {
+                                eventList.push(element);
+                            });
+                        }
+                    });
+                }
+            });
+
+            Events.find({university: student.university})
+            .then(privateEvents => {
+                if (privateEvents)
+                {
+                    privateEvents.forEach(element => {
+                        eventList.push(element);
+                    });
+                }
+            });
+
+            return res.status(200).json(eventList);
         }
         else
         {
-            return res.status(200).json({error: "Event does not exist"})
+            return res.status(200).json({error: "Student does not exist"});
         }
     })
 })
