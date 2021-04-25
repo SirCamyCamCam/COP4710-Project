@@ -7,6 +7,7 @@ router.post('/createEvents', (req, res) => {
         name: req.body.EventsName,
         type: req.body.EventType,
         email: req.body.EventsEmail,
+        data: req.body.Eventsdata,
         phone: req.body.EventsPhone,
         desc: req.body.EventsDesc,
         time: req.body.EventsTime,
@@ -20,13 +21,9 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-
-// Any of these bellow probably don't work
-// Needs to find all not one
-
 // findEventTime
 router.post('/findEventsTime', (req, res) => {
-    Events.findOne({time: req.body.EventsTime})
+    Events.find({type: req.body.EventType})
     .then(events => {
         if (events) {
             return events
@@ -36,20 +33,6 @@ router.post('/findEventsTime', (req, res) => {
             return res.status(200).json({error: "Event does not exist"})
         }
     })
-});
-
-// findEventRSO
-router.post('/findEventsRSO', (req, res) => {
-    Events.findOne({rso: req.body.EventsRSO})
-    .then(events => {
-        if (events) {
-            return events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
-});
+})
 
 module.exports = router;

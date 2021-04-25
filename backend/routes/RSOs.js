@@ -25,10 +25,10 @@ router.post('/createRSO', (req, res) => {
 
 // findUniversity
 router.post('/findUniversity', (req, res) => {
-    University.findOne({name: req.body.UniversityName})
-    .then(university => {
-        if (university) {
-            return res.status(200).json(university)
+    RSO.findOne({university: req.body.RSOUniversity})
+    .then(rso => {
+        if (rso) {
+            return res.status(200).json(rso)
         }
         else
         {
