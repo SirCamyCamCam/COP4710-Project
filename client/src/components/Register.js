@@ -4,7 +4,7 @@ import axios from 'axios'
 import './../index.css'
 
 function Register({ error }) {
-    const [details, setDetails] = useState({AdminEmail: "", AdminPassword: "", AdminType: "", AdminNumber: ""});
+    const [details, setDetails] = useState({AdminEmail: "", AdminPassword: "", AdminType: "", AdminNumber: "", AdminUniversity: ""});
   
     const createUser = e => {
         e.preventDefault();
@@ -80,19 +80,16 @@ function Register({ error }) {
                         </div>
                     </div>
 
-                    {/* <div className="radio">
-                        <label>
-                            <input type="radio" value="Admin" onChange={e => setDetails({...details, accountType: e.target.value})} value={details.accountType} />
-                            Admin
-                        </label>
+                    <div className="form-group">
+                        <label>University: </label>
+                        <input
+                        type="University"
+                        name="University"
+                        className="register-input"
+                        placeholder="University"
+                        id="University"
+                        onChange={e => setDetails({...details, AdminUniversity: e.target.value})} value={details.AdminUniversity} />
                     </div>
-
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="Student" onChange={e => setDetails({...details, accountType: e.target.value})} value={details.accountType} />
-                            Student
-                        </label>
-                    </div> */}
 
                     <input type="submit" value="REGISTER"/>
 

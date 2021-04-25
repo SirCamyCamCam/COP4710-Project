@@ -18,8 +18,8 @@ function CreateEvent() {
 
   const [markers, setMarkers] = useState([]);
 
-  const [details, setDetails] = useState({EventName: "", EventName: "", EventType: "", EventPhone: "", EventCategory: "", 
-                                          EventLat: "", EventLon: "", EventDesc: "", EventDate: "", EventTime: ""});
+  const [details, setDetails] = useState({EventName: "", EventName: "", EventType: "", EventPhone: "", EventCategory: "", EventRSO: "",
+                                          EventLat: "", EventLon: "", EventDesc: "", EventDate: "", EventTime: "", EventUniversity: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -96,6 +96,28 @@ function CreateEvent() {
                         <input id="RSO" type="radio" onChange={e => setDetails({...details, EventType: "RSO"})} checked={details.EventType == "RSO"}/>
                     <br/>
                 </div>
+              </div>
+
+              <div className="form-group">
+                  <label>Event RSO: (only if Event Type is RSO) </label>
+                  <input
+                  type="EventRSO"
+                  name="EventRSO"
+                  className="register-input"
+                  placeholder="Event RSO"
+                  id="EventRSO"
+                  onChange={e => setDetails({...details, EventRSO: e.target.value})} value={details.EventRSO} />
+              </div>
+
+              <div className="form-group">
+                  <label>University: </label>
+                  <input
+                  type="University"
+                  name="University"
+                  className="register-input"
+                  placeholder="University"
+                  id="University"
+                  onChange={e => setDetails({...details, EventUniversity: e.target.value})} value={details.EventUniversity} />
               </div>
 
               <div className="form-group">
