@@ -12,6 +12,10 @@ button {
   border: none;
   outline: none;
 } */
+form {
+  display: block;
+  position: relative;
+}
 
 .App {
   height: 100vh;
@@ -21,17 +25,24 @@ button {
   background-color: #53565a;
 }
 
+.App::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: 1;
+  background-image: linear-gradient(to bottom right, #ffce00, #fe4880); 
+}
+
 .CreateRSO {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #53565a;
-}
-
-form {
-  display: block;
-  position: relative;
 }
 
 .CreateRSO::after {
@@ -46,7 +57,35 @@ form {
   background-image: linear-gradient(to bottom right, #ffce00, #fe4880); 
 }
 
-.App::after {
+.JoinRSO {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #53565a;
+}
+
+.JoinRSO::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: 1;
+  background-image: linear-gradient(to bottom right, #ffce00, #fe4880); 
+}
+
+.LeaveRSO {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #53565a;
+}
+
+.LeaveRSO::after {
   content: "";
   display: block;
   position: absolute;

@@ -133,12 +133,12 @@ router.post('/deleteStudent', (req, res) => {
 
             if (deleted == false)
             {
-                return res.status(200).json({error: "student does not exist"})
+                return res.status(200).json({error: "Student does not exist"})
             }
 
             rso.save(function(err)
             {
-                err != null ? console.log(err) : console.log('rso updated')
+                err != null ? console.log(err) : console.log('RSO updated')
             })
 
             if (rso.studentArray.length >= 5)
@@ -154,7 +154,7 @@ router.post('/deleteStudent', (req, res) => {
         }
         else
         {
-            return res.status(200).json({error: "rso does not exist"})
+            return res.status(200).json({error: "Rso does not exist"})
         }
     })
 });

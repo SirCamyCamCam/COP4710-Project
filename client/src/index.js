@@ -9,6 +9,8 @@ import MainPage from './components/MainPage';
 import CreateEvent from './components/CreateEvent';
 import CreateRSO from './components/CreateRSO';
 import CreateUniversity from './components/CreateUniversity'
+import JoinRSO from './components/JoinRSO'
+import LeaveRSO from './components/LeaveRSO'
 import ViewEvents from './components/ViewEvents'
 
 ReactDOM.render(
@@ -21,6 +23,8 @@ ReactDOM.render(
             <Route exact path={'/createRSO'} component={CreateRSO} />
             <Route exact path={'/createUniversity'} component={CreateUniversity} />
             <Route exact path={'/viewEvents'} component={ViewEvents} />
+            <Route exact path={'/joinRSO'} component={JoinRSO} />
+            <Route exact path={'/leaveRSO'} component={LeaveRSO} />
         </Switch>
     </BrowserRouter>,
 document.getElementById('root')
