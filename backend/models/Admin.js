@@ -17,6 +17,9 @@ const AdminSchema =  new Schema({
     accountType: {
         type: String,
         required: true
+    },
+    university: {
+        type: String
     }
 })
 

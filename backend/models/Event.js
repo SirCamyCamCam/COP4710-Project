@@ -50,6 +50,9 @@ const EventSchema =  new Schema({
     },
     rso: {
         type: String
+    },
+    university: {
+        type: String
     }
 })
 

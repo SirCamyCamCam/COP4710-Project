@@ -14,7 +14,8 @@ router.post('/createAdmin', (req, res) => {
                 email: req.body.AdminEmail,
                 phone: req.body.AdminNumber,
                 password: req.body.AdminPassword,
-                accountType: req.body.AdminType
+                accountType: req.body.AdminType,
+                university: req.body.AdminUniversity
             });
             newAdmin
             .save()
