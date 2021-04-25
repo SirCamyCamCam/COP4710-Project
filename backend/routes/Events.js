@@ -80,19 +80,6 @@ router.post('/findEventsPrivate', (req, res) => {
     });
 });
 
-function nameStudent(email){
-    Admins.findOne({email: email})
-    .then(student => {
-    var name
-    if (student)
-    {
-        name = student.university;
-        console.log(name)
-    }
-    return name
-})
-}
-
 // Find and add all private events of the univeristy
 router.post('/findEventsRso', (req, res) => {
     var name  = []
@@ -112,7 +99,7 @@ router.post('/findEventsRso', (req, res) => {
         }
         else
         {
-            res.status(200).json("no events event found");
+            res.status(200).json("private event not found");
         }
     });
 });
