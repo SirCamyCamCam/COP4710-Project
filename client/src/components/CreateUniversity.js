@@ -17,7 +17,7 @@ function CreateUniversity() {
 
   const [markers, setMarkers] = useState([]);
 
-  const [details, setDetails] = useState({email: "", universityName: "", lat: "", long: "", universityDescription: ""});
+  const [details, setDetails] = useState({UniversityEmail: "", UniversityName: "", lat: "", long: "", UniversityDesc: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -59,7 +59,7 @@ function CreateUniversity() {
                   className="register-input"
                   placeholder="University Name"
                   id="University Name"
-                  onChange={e => setDetails({...details, universityName: e.target.value})} value={details.universityName} />
+                  onChange={e => setDetails({...details, UniversityName: e.target.value})} value={details.UniversityName} />
               </div>
 
               <div className="form-group">
@@ -70,7 +70,7 @@ function CreateUniversity() {
                   className="register-input"
                   placeholder="Email"
                   id="email"
-                  onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
+                  onChange={e => setDetails({...details, UniversityEmail: e.target.value})} value={details.UniversityEmail} />
               </div>
 
               <div className="form-group">
@@ -81,7 +81,7 @@ function CreateUniversity() {
                   className="register-input"
                   placeholder="Give a short description"
                   id="eventDescription"
-                  onChange={e => setDetails({...details, universityDescription: e.target.value})} value={details.universityDescription} />
+                  onChange={e => setDetails({...details, UniversityDesc: e.target.value})} value={details.UniversityDesc} />
               </div>
 
               <input type="submit" value="CREATE UNIVERSITY"/>
