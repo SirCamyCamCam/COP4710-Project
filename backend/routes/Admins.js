@@ -39,4 +39,83 @@ router.post('/findAdmin', (req, res) => {
     })
 });
 
+// Add to RSO
+router.post('/addRSO', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin) {
+            admin.rsos.push({
+                rso: req.body.AdminRSO
+                });
+
+            rso.save(function(err)
+            {
+                err != null ? console.log(err) : console.log('user updated')
+            });
+        }
+        else
+        {
+            return res.status(200).json({error: "user does not exist"})
+        }
+    })
+})
+
+// Remove RSO
+router.post('/removeRSO', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin)
+        {
+            var i;
+            var length = admin.rsos.length;
+            var removed = false
+            for (i = 0; i < length; i++)
+            {
+                if (admin.rsos[i].student == req.body.AdminRSO)
+                {
+                    RSO.updateOne({ _id: rso._id }, { "$pull": { "rsos": { "rso": req.body.AdminRSO } }}, { safe: true, multi:true }, function(err, obj) {});
+                    removed = true
+                }
+            }
+
+            if (removed == true)
+            {
+                return res.status(200).json("rso removed")
+            }
+            else
+            {
+                return res.status(200).json({error: "failed to find rso"})
+            }
+        }
+    })
+})
+
+router.post('/getRSO', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin)
+        {
+            return res.status(200).json(admin.rso);
+        }
+        else
+        {
+            return res.status(200).json({error: "User does not exist"})
+        }
+    })
+});
+
+router.post('/getUniversity', (req, res) => {
+    Admin.findOne({email: req.body.AdminEmail})
+    .then(admin => {
+        if (admin)
+        {
+            return res.status(200).json(admin.university);
+        }
+        else
+        {
+            return res.status(200).json({error: "User does not exist"})
+        }
+    })
+})
+
 module.exports = router;

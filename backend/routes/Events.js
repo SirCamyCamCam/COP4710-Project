@@ -47,57 +47,50 @@ router.post('/createEvents', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// findEvents
-router.post('/findEvents', (req, res) => {
-
-    Admins.find({email: req.body.email})
-    .then(student => {
-        if (student)
+// Find all public events
+router.post('/findEventsPublic', (req, res) => {
+    Events.find({type: "Public"})
+    .then(publicEvents => {
+        if (publicEvents)
         {
-            var eventList = []
-            Events.find({type: "public"})
-            .then(publicEvents => {
-                if (publicEvents)
-                {
-                    publicEvents.forEach(element => {
-                        eventList.push(element);
-                    });
-                }
-            });
-
-            RSOs.find({studentArray: {student: req.body.email}})
-            .then(rsos => {
-                if (rsos)
-                {
-                    Events.find({rso: rsos.name})
-                    .then(rsoEvents => {
-                        if (rsoEvents)
-                        {
-                            rsoEvents.forEach(element => {
-                                eventList.push(element);
-                            });
-                        }
-                    });
-                }
-            });
-
-            Events.find({university: student.university})
-            .then(privateEvents => {
-                if (privateEvents)
-                {
-                    privateEvents.forEach(element => {
-                        eventList.push(element);
-                    });
-                }
-            });
-
-            return res.status(200).json(eventList);
+            return res.status(200).json(publicEvents);
         }
         else
         {
-            return res.status(200).json({error: "Student does not exist"});
+            res.status(200).json("no public event found");
         }
-    })
-})
+    });
+});
+
+
+// Find all private events of the univeristy
+router.post('/findEventsPrivate', (req, res) => {
+    Events.find({university: req.body.university})
+    .then(privateEvents => {
+        if (privateEvents)
+        {
+            return res.status(200).json(privateEvents);
+        }
+        else
+        {
+            res.status(200).json("no events event found");
+        }
+    });
+});
+
+// Find all rso events
+router.post('/findEventsRso', (req, res) => {
+    Events.find({rso: req.body.rso})
+    .then(rsoEvents => {
+        if (rsoEvents)
+        {
+            return res.status(200).json(rsoEvents);
+        }
+        else
+        {
+            res.status(200).json("private event not found");
+        }
+    });
+});
 
 module.exports = router;

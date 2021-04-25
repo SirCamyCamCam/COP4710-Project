@@ -20,6 +20,11 @@ const AdminSchema =  new Schema({
     },
     university: {
         type: String
+    },
+    rsos: {
+        rso:{
+            type: String
+        }
     }
 })
 
