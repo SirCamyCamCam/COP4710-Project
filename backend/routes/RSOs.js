@@ -108,17 +108,24 @@ router.post('/deleteStudent', (req, res) => {
                 return res.status(200).json({error: "Admin cannot leave RSO!"})
             }
             
-
             var i;
-            var deleted = false;
-            for (i = 0; i < rso.studentArray.length; i++)
+            var length = rso.studentArray.length;
+            for (i = 0; i < length; i++)
             {
                 if (rso.studentArray[i].student == req.body.email)
                 {
                     RSO.updateOne({ _id: rso._id }, { "$pull": { "studentArray": { "student": req.body.email } }}, { safe: true, multi:true }, function(err, obj) {});
 
-                    deleted = true;
-                    break;
+                    if (length <= 5)
+                    {
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": false}}, { safe: true, multi:true }, function(err, obj) {});
+                        return res.status(200).json(false);
+                    }
+                    else 
+                    {
+                        RSO.updateOne({ _id: rso._id },{ "$set":{"active": true}}, { safe: true, multi:true }, function(err, obj) {});
+                        return res.status(200).json(true);
+                    }
                 }
             }
 
