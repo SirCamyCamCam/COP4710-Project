@@ -19,6 +19,10 @@ const RSOSchema = new Schema({
     university: {
         type: String,
         required: true
+    },
+    active:{
+        type: bool,
+        required: true
     }
 })
 
