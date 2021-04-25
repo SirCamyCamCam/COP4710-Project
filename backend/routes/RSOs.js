@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const RSO = require('../models/RSO');
+const Admin = require('../models/Admin')
 const port = 3000
 const mongoose = require('mongoose');
 
@@ -68,6 +69,7 @@ router.post('/addAStudent', (req, res) => {
     .then(rso => {
         if (rso) 
         {
+            length = rso.studentArray.length
             rso.studentArray.push({
                 student: req.body.email
                 });
@@ -77,14 +79,14 @@ router.post('/addAStudent', (req, res) => {
                 err != null ? console.log(err) : console.log('rso updated')
             });
 
-            if (rso.studentArray.length >= 5)
+            if (length >= 4)
             {
-                rso.active = true;
+                RSO.updateOne({ _id: rso._id },{ "$set":{"active": true}}, {upsert:true});
                 return res.status(200).json(true);
             }
-            else
+            else 
             {
-                rso.active = false;
+                RSO.updateOne({ _id: rso._id },{ "$set":{"active": false}}, {upsert:true});
                 return res.status(200).json(false);
             }
         }
