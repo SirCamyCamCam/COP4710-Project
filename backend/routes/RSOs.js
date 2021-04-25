@@ -128,22 +128,6 @@ router.post('/deleteStudent', (req, res) => {
                     }
                 }
             }
-
-            if (deleted == false)
-            {
-                return res.status(200).json({error: "Student does not exist"})
-            }
-            
-            if (rso.studentArray.length >= 5)
-            {
-                rso.active = true;
-                return res.status(200).json(true);
-            }
-            else
-            {
-                rso.active = false;
-                return res.status(200).json(false);
-            }
         }
         else
         {
