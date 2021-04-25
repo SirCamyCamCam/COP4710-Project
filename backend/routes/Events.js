@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Events = require('../models/Event');
 const RSOs = require('../models/RSO')
+const port = 3000;
 
 router.post('/createEvents', (req, res) => {
     if (req.body.EventType == "rso")
@@ -17,7 +18,7 @@ router.post('/createEvents', (req, res) => {
         })
     }
 
-    Events.findOne({time: req.body.EventTime, lat: req.body.lat, lon: req.body.lon})
+    Events.findOne({time: req.body.EventTime, lat: req.body.EventLat, lon: req.body.EventLon})
     .then(events => {
         if (events)
         {
@@ -29,13 +30,14 @@ router.post('/createEvents', (req, res) => {
         name: req.body.EventName,
         type: req.body.EventType,
         email: req.body.EventEmail,
+        date: req.body.EventDate,
         phone: req.body.EventPhone,
         desc: req.body.EventDesc,
         time: req.body.EventTime,
         lat: req.body.EventLat,
         lon: req.body.EventLon,
-        category: req.body.EventCategory,
-        rso: req.body.EventRSO
+        category: req.body.EventCategory
+        // rso: req.body.EventRSO
     });
     newEvents
     .save()

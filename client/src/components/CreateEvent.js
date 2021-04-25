@@ -18,8 +18,8 @@ function CreateEvent() {
 
   const [markers, setMarkers] = useState([]);
 
-  const [details, setDetails] = useState({EventsEmail: "", EventsName: "", EventType: "", EventsPhone: "", EventCategory: "", 
-                                          EventLat: "", EventLon: "", EventsDesc: "", EventDate: "", EventsTime: ""});
+  const [details, setDetails] = useState({EventName: "", EventName: "", EventType: "", EventPhone: "", EventCategory: "", 
+                                          EventLat: "", EventLon: "", EventDesc: "", EventDate: "", EventTime: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -29,17 +29,17 @@ function CreateEvent() {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(details);
+    // console.log(markers[0].lat);
     createEvent(details, markers)
   }
 
   const createEvent = (details, markers) => {
-    details.EventLat = markers.lat;
-    details.EventLon = markers.lng;
+    details.EventLat = markers[0].lat;
+    details.EventLon = markers[0].lng;
 
     console.log(details);
      // TODO: Put in DataBase
-    axios.post("Events/createEvent", details).then(response => {
+    axios.post("Events/createEvents", details).then(response => {
         if (response.data == "Created Event") {
             routeChange();
             console.log(response.data)
@@ -69,7 +69,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Event Name"
                   id="Event Name"
-                  onChange={e => setDetails({...details, EventsName: e.target.value})} value={details.EventsName} />
+                  onChange={e => setDetails({...details, EventName: e.target.value})} value={details.EventName} />
               </div>
 
               <div className="form-group">
@@ -106,7 +106,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Event Email"
                   id="email"
-                  onChange={e => setDetails({...details, EventsEmail: e.target.value})} value={details.EventsEmail} />
+                  onChange={e => setDetails({...details, EventEmail: e.target.value})} value={details.EventEmail} />
               </div>
 
               <div className="form-group">
@@ -117,7 +117,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Phone #"
                   id="phoneNumber"
-                  onChange={e => setDetails({...details, EventsPhone: e.target.value})} value={details.EventsPhone} 
+                  onChange={e => setDetails({...details, EventPhone: e.target.value})} value={details.EventPhone} 
                   />
               </div>
 
@@ -129,7 +129,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder="Give a short description"
                   id="eventDescription"
-                  onChange={e => setDetails({...details, EventsDesc: e.target.value})} value={details.EventsDesc} />
+                  onChange={e => setDetails({...details, EventDesc: e.target.value})} value={details.EventDesc} />
               </div>
 
               <div className="form-group">
@@ -151,7 +151,7 @@ function CreateEvent() {
                   className="register-input"
                   placeholder=""
                   id="eventDescription"
-                  onChange={e => setDetails({...details, EventsTime: e.target.value})} value={details.EventsTime} />
+                  onChange={e => setDetails({...details, EventTime: e.target.value})} value={details.EventTime} />
               </div>
 
               <input type="submit" value="CREATE EVENT"/>
@@ -167,8 +167,8 @@ function CreateEvent() {
                 zoom={17}
                 center={center}
                 onClick={e => {
-                  setMarkers((current) => [
-                    ...current, 
+                  setMarkers((markers) => [
+                    ...markers, 
                     {
                       lat: e.latLng.lat(),
                       lng: e.latLng.lng(),
