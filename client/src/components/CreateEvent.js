@@ -19,7 +19,7 @@ function CreateEvent() {
   const [markers, setMarkers] = useState([]);
 
   const [details, setDetails] = useState({EventsEmail: "", EventsName: "", EventType: "", EventsPhone: "", EventCategory: "", 
-                                          EventsLat: "", EventsLon: "", EventsDesc: "", EventDate: "", EventsTime: ""});
+                                          EventLat: "", EventLon: "", EventsDesc: "", EventDate: "", EventsTime: ""});
 
   const getLatLng = e => {
     getLatLong1({...latLong, lat: e.latLng.lat(), long: e.latLng.lng()});
@@ -34,8 +34,8 @@ function CreateEvent() {
   }
 
   const createEvent = (details, markers) => {
-    details.lat = markers.lat;
-    details.long = markers.lng;
+    details.EventLat = markers.lat;
+    details.EventLon = markers.lng;
 
     console.log(details);
      // TODO: Put in DataBase
