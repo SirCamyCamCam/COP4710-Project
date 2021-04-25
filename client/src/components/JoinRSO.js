@@ -10,6 +10,10 @@ function JoinRSO() {
     
     const [error, setError] = useState("");
 
+    const setEmail = () => {
+        setDetails({...details, email: sessionStorage.getItem("username")})
+    }
+
     // Temporary check before checkjing if user is in database 
     const joinRSO = details => {
         console.log(details);
@@ -30,7 +34,6 @@ function JoinRSO() {
     const sumbitHandler = e => {
         e.preventDefault();
 
-        setDetails({...details, email: sessionStorage.getItem("username")})
         // Put Student in database
         joinRSO(details)
     }
@@ -57,7 +60,7 @@ function JoinRSO() {
                         onChange={e => setDetails({...details, RSOName: e.target.value})} value={details.RSOName} />
                     </div>
 
-                    <input type="submit" value="SUBMIT"/>
+                    <input type="submit" value="SUBMIT" onClick={setEmail}/>
                     <input type="button" value="RETURN" onClick={routeChange}/>
                 </div>
             </div>
