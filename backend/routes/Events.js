@@ -98,17 +98,6 @@ router.post('/findEvents', (req, res) => {
             return res.status(200).json({error: "Student does not exist"});
         }
     })
-
-    Events.find({type: req.body.EventType})
-    .then(events => {
-        if (events) {
-            return events
-        }
-        else
-        {
-            return res.status(200).json({error: "Event does not exist"})
-        }
-    })
 })
 
 module.exports = router;
