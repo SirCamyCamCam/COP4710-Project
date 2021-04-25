@@ -45,14 +45,6 @@ router.post('/createRSO', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-<<<<<<< HEAD
-// findUniversity
-router.post('/findUniversity', (req, res) => {
-    RSO.findOne({university: req.body.RSOUniversity})
-    .then(rso => {
-        if (rso) {
-            return res.status(200).json(rso)
-=======
 // findRSO
 router.post('/findRSO', (req, res) => {
     RSO.findOne({name: req.body.RSOName})
@@ -142,7 +134,6 @@ router.post('/deleteStudent', (req, res) => {
                 rso.active = false;
                 return res.status(200).json(false);
             }
->>>>>>> 3ff9fc7ed9afe8ab917a6ea0ba1c90140a3e021f
         }
         else
         {
