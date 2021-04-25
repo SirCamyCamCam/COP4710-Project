@@ -71,9 +71,7 @@ router.post('/findEvents', (req, res) => {
     .then(publicEvents => {
         if (publicEvents)
         {
-            publicEvents.forEach(element => {
-                eventList.push(element);
-            });
+            eventList.push(element);
         }
     });
 
@@ -82,9 +80,7 @@ router.post('/findEvents', (req, res) => {
     .then(privateEvents => {
         if (privateEvents)
         {
-            privateEvents.forEach(element => {
-                eventList.push(element);
-            });
+            eventList.push(element);
         }
     });
 
@@ -93,9 +89,7 @@ router.post('/findEvents', (req, res) => {
     .then(rsos => {
         if (rsos)
         {
-            rsos.forEach(element => {
-                rsoList.push(element)
-            })
+            rsoList.push(element)
         }
     });
 
@@ -113,7 +107,7 @@ router.post('/findEvents', (req, res) => {
     });
             
     // return the list of events
-    return res.status(200).json(eventList);
+   return res.status(200).json(eventList);
 })
 
 module.exports = router;
