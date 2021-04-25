@@ -14,6 +14,10 @@ const EventSchema =  new Schema({
         type: String,
         required: true
     },
+    data:{
+        type: String,
+        required: true
+    },
     phone: {
         type: String,
         required: true
@@ -44,6 +48,9 @@ const EventSchema =  new Schema({
         default: "None",
         required: true
     },
+    rso: {
+        type: String
+    }
 })
 
 module.exports = Event = mongoose.model("event", EventSchema);

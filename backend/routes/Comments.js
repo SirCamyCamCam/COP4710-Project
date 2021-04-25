@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const Comment = require('../models/Comment');
 
-
 router.post('/createComment', (req, res) => {
     const newComment = new Comment({
-        CommentEvent: req.body.CommentEvent,
+        commentEvent: req.body.CommentEventName,
         text: req.body.CommentText,
         rating: req.body.CommentRating,
         time: req.body.CommentTime,
@@ -17,14 +16,14 @@ router.post('/createComment', (req, res) => {
 });
 
 router.post('/displayComment', (req, res) => {
-    Comment.find({student: req.body.CommentStudent})
+    Comment.find({commentEvent: req.body.CommentEvent})
     .then(comment => {
         if (comment) {
             return res.status(200).json(comment)
         }
         else
         {
-            return res.status(200).json({error: "email or Password does not match"})
+            return res.status(200).json({error: "No Comment Found"})
         }
     })
 });
