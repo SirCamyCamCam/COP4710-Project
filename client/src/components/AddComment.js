@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router';
-import { GoogleMap, useJsApiLoader, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios'
 
 const getEventName = () => {
@@ -13,14 +12,10 @@ function AddComment() {
     const submitHandler = e => {
         e.preventDefault();
         console.log(details);
-        setDetails({...details, CommentEventName: getEventName(), CommentStudent: sessionStorage.getItem("username")})
         addComment(details)
     }
 
-    const addComment = (details, markers) => {
-        details.UniversityLat = markers[0].lat;
-        details.UniversityLon = markers[0].lng;
-
+    const addComment = (details) => {
         console.log(details);
         // TODO Put in DataBase
         axios.post("Comments/createComment", details).then(response => {
@@ -31,7 +26,6 @@ function AddComment() {
             console.log(response.data)
         }
         });
-
     }
 
     const history = useHistory();
@@ -54,7 +48,7 @@ function AddComment() {
                     className="register-input"
                     placeholder="Comment Text"
                     id="CommentText"
-                    onChange={e => setDetails({...details, CommentText: e.target.value})} value={details.CommentText} />
+                    onChange={e => setDetails({...details, CommentEventName: getEventName(), CommentStudent: sessionStorage.getItem("username"), CommentText: e.target.value})} value={details.CommentText} />
                 </div>
 
                 <input type="submit" value="CREATE COMMENT"/>

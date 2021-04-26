@@ -58,7 +58,7 @@ function viewEvents() {
                 // routeChange();
                 console.log("ERROR")
             }else {
-                console.log(response.data[0])
+                // console.log(response.data[0])
                 setEvent1({...event1, 
                     EventName: response.data[0].name, EventType: response.data[0].type, 
                     EventPhone: response.data[0].phone, EventCategory: response.data[0].category, 
@@ -79,15 +79,15 @@ function viewEvents() {
                 // routeChange();
                 console.log("ERROR")
             }else {
-                console.log(getUser)
-                console.log(response.data)
+                // console.log(getUser)
+                // console.log(response.data)
                 getUniversity.university = response.data
                 axios.post("Events/findEventsPrivate", getUniversity).then(response1 => {
                     if (response1.data == null) {
                         // routeChange();
                         console.log("ERROR")
                     }else {
-                        console.log(response1.data)
+                        // console.log(response1.data)
                         setEvent2({...event2, 
                             EventName: response1.data[0].name, EventType: response1.data[0].type, 
                             EventPhone: response1.data[0].phone, EventCategory: response1.data[0].category, 
