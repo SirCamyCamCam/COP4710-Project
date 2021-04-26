@@ -7,7 +7,8 @@ router.post('/createComment', (req, res) => {
         text: req.body.CommentText,
         rating: req.body.CommentRating,
         time: req.body.CommentTime,
-        student: req.body.CommentStudent
+        student: req.body.CommentStudent,
+        date: req.body.CommentDate
     });
     newComment
     .save()
@@ -15,7 +16,7 @@ router.post('/createComment', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-router.post('/displayComment', (req, res) => {
+router.post('/getComments', (req, res) => {
     Comment.find({commentEvent: req.body.CommentEvent})
     .then(comment => {
         if (comment) {
@@ -27,5 +28,15 @@ router.post('/displayComment', (req, res) => {
         }
     })
 });
+
+router.post('/deleteComment', (req, res) => {
+    var query = {date: req.body.date, time: req.body.time}
+
+    Comment.deleteOne(query, function(err, obj)
+    {
+        if (err) throw err;
+        return res.status(200).json("Comment Deleted");
+    });
+})
 
 module.exports = router;
