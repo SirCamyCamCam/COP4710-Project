@@ -59,11 +59,14 @@ function ViewComments() {
             }else {
                 console.log(response.data)
                 setDetails1({...comment1, 
-                    CommentEventName: response.data.commentEvent, CommentText: response.data.text, 
-                    CommentTime: response.data.time, CommentStudent: response.data.student})
+                    CommentEventName: response.data[0].commentEvent, CommentText: response.data[0].text, 
+                    CommentTime: response.data[0].time, CommentStudent: response.data[0].student})
                 setDetails2({...comment2, 
-                    CommentEventName: response.data.commentEvent, CommentText: response.data.text, 
-                    CommentTime: response.data.time, CommentStudent: response.data.student})
+                    CommentEventName: response.data[1].commentEvent, CommentText: response.data[1].text, 
+                    CommentTime: response.data[1].time, CommentStudent: response.data[1].student})
+                // setDetails3({...comment3, 
+                //     CommentEventName: response.data[2].commentEvent, CommentText: response.data[1].text, 
+                //     CommentTime: response.data[2].time, CommentStudent: response.data[1].student})
             }
         });
 
@@ -108,35 +111,8 @@ function ViewComments() {
                         <h5>Lat: <span>{event3.EventLat}</span></h5>
                         <h5>Long: <span>{event3.EventLon}</span></h5>                        
                         <h5>Event Time: <span>{event3.EventTime}</span></h5>
-                    </div>
-
-                    <div className="form-group">
-                        <h4>Event 4: </h4>
-                        <h5>Event Name: <span>{event4.EventName}</span></h5>
-                        <h5>Event Type: <span>{event4.EventType}</span></h5>
-                        <h5>Event Phone: <span>{event4.EventPhone}</span></h5>
-                        <h5>Event Category: <span>{event4.EventCategory}</span></h5>
-                        <h5>Event Date: <span>{event4.EventDate}</span></h5>
-                        <h5>Event University: <span>{event4.EventUniversity}</span></h5>
-                        <h5>Event Description: <span>{event4.EventDesc}</span></h5>
-                        <h5>Lat: <span>{event4.EventLat}</span></h5>
-                        <h5>Long: <span>{event4.EventLon}</span></h5>                        
-                        <h5>Event Time: <span>{event4.EventTime}</span></h5>
-                    </div>
-               
-                    <div className="form-group">
-                        <h4>Event 5: </h4>
-                        <h5>Event Name: <span>{event5.EventName}</span></h5>
-                        <h5>Event Type: <span>{event5.EventType}</span></h5>
-                        <h5>Event Phone: <span>{event5.EventPhone}</span></h5>
-                        <h5>Event Category: <span>{event5.EventCategory}</span></h5>
-                        <h5>Event Date: <span>{event5.EventDate}</span></h5>
-                        <h5>Event University: <span>{event5.EventUniversity}</span></h5>
-                        <h5>Event Description: <span>{event5.EventDesc}</span></h5>
-                        <h5>Lat: <span>{event5.EventLat}</span></h5>
-                        <h5>Long: <span>{event5.EventLon}</span></h5>
-                        <h5>Event Time: <span>{event5.EventTime}</span></h5>
                     </div> */}
+
                 </div>
 
                 <input type="button" value="RETURN" onClick={routeChange}/>

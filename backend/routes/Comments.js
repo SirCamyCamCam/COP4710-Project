@@ -15,7 +15,7 @@ router.post('/createComment', (req, res) => {
 });
 
 router.post('/getComments', (req, res) => {
-    Comment.find({commentEvent: req.body.CommentEvent})
+    Comment.find({commentEvent: req.body.CommentEventName})
     .then(comment => {
         if (comment) {
             return res.status(200).json(comment)
