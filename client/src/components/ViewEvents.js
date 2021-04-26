@@ -52,17 +52,13 @@ function viewEvents() {
         EventLon: "23.664565476"
     }
 
-    const getEventName = event1 => {
-        return event1.EventName
-    }
-
     useEffect(() => {        
         axios.post("Events/findEventsPublic").then(response => {
             if (response.data == null) {
                 // routeChange();
                 console.log("ERROR")
             }else {
-                console.log(response.data[0])
+                // console.log(response.data[0])
                 setEvent1({...event1, 
                     EventName: response.data[0].name, EventType: response.data[0].type, 
                     EventPhone: response.data[0].phone, EventCategory: response.data[0].category, 
@@ -83,15 +79,15 @@ function viewEvents() {
                 // routeChange();
                 console.log("ERROR")
             }else {
-                console.log(getUser)
-                console.log(response.data)
+                // console.log(getUser)
+                // console.log(response.data)
                 getUniversity.university = response.data
                 axios.post("Events/findEventsPrivate", getUniversity).then(response1 => {
                     if (response1.data == null) {
                         // routeChange();
                         console.log("ERROR")
                     }else {
-                        console.log(response1.data)
+                        // console.log(response1.data)
                         setEvent2({...event2, 
                             EventName: response1.data[0].name, EventType: response1.data[0].type, 
                             EventPhone: response1.data[0].phone, EventCategory: response1.data[0].category, 
@@ -117,6 +113,31 @@ function viewEvents() {
         history.push("./mainPage")
     }
 
+    const addCommentRouteEvent1 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./addComment")
+    }
+
+    const addCommentRouteEvent2 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./addComment")
+    }
+
+    const addCommentRouteEvent3 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./addComment")
+    }
+
+    const addCommentRouteEvent4 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./addComment")
+    }
+
+    const addCommentRouteEvent5 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./addComment")
+    }
+
     return (
         <form className="ViewEvents">
             <div className="form-inner">    
@@ -137,7 +158,10 @@ function viewEvents() {
                         <h5>Event Time: <span>{event1.EventTime}</span></h5>
                     </div>
 
-                    <input type="button" value="ADD COMMENT"/>
+                    <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent1}/>
+                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="MODIFY COMMENTS"/>
+
 
                     <div className="form-group">
                         <h4>Event 2: </h4>
@@ -153,7 +177,9 @@ function viewEvents() {
                         <h5>Event Time: <span>{event2.EventTime}</span></h5>
                     </div>
 
-                    <input type="button" value="ADD COMMENT"/>
+                    <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent2}/>
+                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="MODIFY COMMENTS"/>
 
                     <div className="form-group">
                         <h4>Event 3: </h4>
@@ -169,8 +195,10 @@ function viewEvents() {
                         <h5>Event Time: <span>{event3.EventTime}</span></h5>
                     </div>
 
-                    <input type="button" value="ADD COMMENT"/>
-
+                    <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent3}/>
+                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="MODIFY COMMENTS"/>
+                    
                     <div className="form-group">
                         <h4>Event 4: </h4>
                         <h5>Event Name: <span>{event4.EventName}</span></h5>
@@ -185,8 +213,10 @@ function viewEvents() {
                         <h5>Event Time: <span>{event4.EventTime}</span></h5>
                     </div>
                     
-                    <input type="button" value="ADD COMMENT"/>
-
+                    <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent4}/>
+                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="MODIFY COMMENTS"/>
+                    
                     <div className="form-group">
                         <h4>Event 5: </h4>
                         <h5>Event Name: <span>{event5.EventName}</span></h5>
@@ -201,7 +231,10 @@ function viewEvents() {
                         <h5>Event Time: <span>{event5.EventTime}</span></h5>
                     </div>
 
-                    <input type="button" value="ADD COMMENT"/>
+                    <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent5}/>
+                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="MODIFY COMMENTS"/>
+
                 </div>
 
                 <input type="button" value="RETURN" onClick={routeChange}/>
