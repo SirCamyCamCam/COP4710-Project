@@ -65,7 +65,7 @@ router.post('/findEventsPublic', (req, res) => {
 
 // Find all private events of the univeristy
 router.post('/findEventsPrivate', (req, res) => {
-    Events.find({university: req.body.university})
+    Events.find({university: req.body.university, type: "Private"})
     .then(privateEvents => {
         if (privateEvents)
         {
