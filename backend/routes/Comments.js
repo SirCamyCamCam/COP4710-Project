@@ -5,7 +5,6 @@ router.post('/createComment', (req, res) => {
     const newComment = new Comment({
         commentEvent: req.body.CommentEventName,
         text: req.body.CommentText,
-        rating: req.body.CommentRating,
         time: req.body.CommentTime,
         student: req.body.CommentStudent,
         date: req.body.CommentDate
