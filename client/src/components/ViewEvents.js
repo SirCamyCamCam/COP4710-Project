@@ -119,23 +119,48 @@ function viewEvents() {
     }
 
     const addCommentRouteEvent2 = () => {
-        sessionStorage.setItem("event", event1.EventName)
+        sessionStorage.setItem("event", event2.EventName)
         history.push("./addComment")
     }
 
     const addCommentRouteEvent3 = () => {
-        sessionStorage.setItem("event", event1.EventName)
+        sessionStorage.setItem("event", event3.EventName)
         history.push("./addComment")
     }
 
     const addCommentRouteEvent4 = () => {
-        sessionStorage.setItem("event", event1.EventName)
+        sessionStorage.setItem("event", event4.EventName)
         history.push("./addComment")
     }
 
     const addCommentRouteEvent5 = () => {
-        sessionStorage.setItem("event", event1.EventName)
+        sessionStorage.setItem("event", event5.EventName)
         history.push("./addComment")
+    }
+
+    const viewCommentRouteEvent1 = () => {
+        sessionStorage.setItem("event", event1.EventName)
+        history.push("./viewComments")
+    }
+
+    const viewCommentRouteEvent2 = () => {
+        sessionStorage.setItem("event", event2.EventName)
+        history.push("./viewComments")
+    }
+
+    const viewCommentRouteEvent3 = () => {
+        sessionStorage.setItem("event", event3.EventName)
+        history.push("./viewComments")
+    }
+
+    const viewCommentRouteEvent4 = () => {
+        sessionStorage.setItem("event", event4.EventName)
+        history.push("./viewComments")
+    }
+
+    const viewCommentRouteEvent5 = () => {
+        sessionStorage.setItem("event", event5.EventName)
+        history.push("./viewComments")
     }
 
     return (
@@ -159,7 +184,7 @@ function viewEvents() {
                     </div>
 
                     <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent1}/>
-                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="VIEW COMMENTS" onClick={viewCommentRouteEvent1}/>
                     <input type="button" value="MODIFY COMMENTS"/>
 
 
@@ -178,7 +203,7 @@ function viewEvents() {
                     </div>
 
                     <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent2}/>
-                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="VIEW COMMENTS" onClick={viewCommentRouteEvent2}/>
                     <input type="button" value="MODIFY COMMENTS"/>
 
                     <div className="form-group">
@@ -196,7 +221,7 @@ function viewEvents() {
                     </div>
 
                     <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent3}/>
-                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="VIEW COMMENTS" onClick={viewCommentRouteEvent3}/>
                     <input type="button" value="MODIFY COMMENTS"/>
                     
                     <div className="form-group">
@@ -214,7 +239,7 @@ function viewEvents() {
                     </div>
                     
                     <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent4}/>
-                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="VIEW COMMENTS" onClick={viewCommentRouteEvent4}/>
                     <input type="button" value="MODIFY COMMENTS"/>
                     
                     <div className="form-group">
@@ -232,7 +257,7 @@ function viewEvents() {
                     </div>
 
                     <input type="button" value="ADD COMMENT" onClick={addCommentRouteEvent5}/>
-                    <input type="button" value="VIEW COMMENTS"/>
+                    <input type="button" value="VIEW COMMENTS" onClick={viewCommentRouteEvent5}/>
                     <input type="button" value="MODIFY COMMENTS"/>
 
                 </div>
