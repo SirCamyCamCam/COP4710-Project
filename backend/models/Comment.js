@@ -11,8 +11,12 @@ const CommentSchema =  new Schema({
         required: true
     },
     time: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
     },
     student: {
         type: Object,
