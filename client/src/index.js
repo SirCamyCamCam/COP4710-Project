@@ -13,6 +13,7 @@ import JoinRSO from './components/JoinRSO'
 import LeaveRSO from './components/LeaveRSO'
 import ViewEvents from './components/ViewEvents'
 import AddComment from './components/AddComment'
+import ViewComments from './components/ViewComments'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -27,6 +28,7 @@ ReactDOM.render(
             <Route exact path={'/joinRSO'} component={JoinRSO} />
             <Route exact path={'/leaveRSO'} component={LeaveRSO} />
             <Route exact path={'/addComment'} component={AddComment} />
+            <Route exact path={'/viewComments'} component={ViewComments} />
         </Switch>
     </BrowserRouter>,
 document.getElementById('root')

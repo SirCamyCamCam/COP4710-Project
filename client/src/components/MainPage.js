@@ -21,7 +21,7 @@ function MainPage() {
             history.push("./createEvent")
         }else {
             window.alert("You cannot create an event with your account type. You need to be an Admin!")
-            history.push("./createEvent")
+            // history.push("./createEvent")
         }
     }
 
@@ -30,7 +30,7 @@ function MainPage() {
             history.push("./createRSO")
         }else {
             window.alert("You cannot create a RSO with your account type. You need to be a Student!")
-            history.push("./createRSO")
+            // history.push("./createRSO")
         }        
     }
 
@@ -39,7 +39,7 @@ function MainPage() {
             history.push("./createUniversity")
         }else {
             window.alert("You cannot create a University with your account type. You need to be a Super Admin!")
-            history.push("./createUniversity")
+            // history.push("./createUniversity")
         } 
     }
 
@@ -48,7 +48,7 @@ function MainPage() {
             history.push("./viewEvents")
         }else {
             window.alert("You cannot view events with your account type. You need to be a Student!")
-            history.push("./viewEvents")
+            // history.push("./viewEvents")
         }        
     }
 
@@ -57,7 +57,7 @@ function MainPage() {
             history.push("./joinRSO")
         }else {
             window.alert("You cannot join a RSO with your account type. You need to be a Student!")
-            history.push("./joinRSO")
+            // history.push("./joinRSO")
         }        
     }
 
@@ -66,7 +66,7 @@ function MainPage() {
             history.push("./leaveRSO")
         }else {
             window.alert("You cannot leave a RSO with your account type. You need to be a Student!")
-            history.push("./leaveRSO")
+            // history.push("./leaveRSO")
         }        
     }
 
